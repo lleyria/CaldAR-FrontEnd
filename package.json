@@ -1,0 +1,27 @@
+{
+  "name": "problematica-12",
+  "version": "1.0.0",
+  "description": "CaldAR-FrontEnd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lleyria/CaldAR-FrontEnd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lleyria/CaldAR-FrontEnd/issues"
+  },
+  "homepage": "https://github.com/lleyria/CaldAR-FrontEnd#readme",
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-plugin-react": "^7.21.5",
+    "husky": "^5.0.6"
+  },
+  "dependencies": {
+    "prettier": "^2.2.1"
+  }
+}
