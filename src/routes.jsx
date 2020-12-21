@@ -1,7 +1,14 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch} from 'react-router';
+import Layout from './layout/Layout';
+import Home from './components/Home';
+import Buildings from './components/Buldings';
+import Companies from './components/Companies';
+import Boilers from './components/Boilers';
+import BoilersType from './components/BoilersType';
+import Technicians from './components/Technicians';
 
-class routes extends Component {
+class Routes extends Component {
     render(){
         return(
             <Switch>
@@ -40,4 +47,4 @@ class routes extends Component {
     }
 }
 
-export default routes;
+export default Routes;
