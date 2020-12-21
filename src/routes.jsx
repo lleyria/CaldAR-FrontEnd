@@ -4,7 +4,7 @@ import Layout from './layout/Layout';
 import Home from './components/Home';
 import Buildings from './components/Buldings';
 import Companies from './components/Companies';
-import Boilers from './components/Boilers';
+import Boilers from './components/Boilers/Boilers';
 import BoilersType from './components/BoilersType';
 import Technicians from './components/Technicians';
 
