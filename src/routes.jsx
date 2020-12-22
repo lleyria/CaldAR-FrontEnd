@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch} from 'react-router';
 import Layout from './layout/Layout';
 import Home from './components/Home';
-import Buildings from './components/Buldings';
+import Buildings from './components/Buildings/Buildings';
 import Companies from './components/Companies';
 import Boilers from './components/Boilers';
 import BoilersType from './components/BoilersType';
