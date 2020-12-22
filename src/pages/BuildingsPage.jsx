@@ -9,5 +9,4 @@ const BuildingsPage = () =>{
         </Layout>
     )
 }
-
 export default BuildingsPage;

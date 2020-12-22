@@ -14,12 +14,21 @@ const Buildings = () => {
       const handleSubmit = (building) => {
         setBuildings([...buildings, building]);
       };
+      const updateBuilding = (updated) =>{
+          setBuildings(buildings.map((building) => {
+              if(building.id === updated.id) {
+                return updated;
+              }
+              return building;
+          }))
+      }
 
     return (
       <div className="buildings">
         <Header />
         <BuildingsTable buildings={buildings}
-        delBuilding={delBuilding} 
+        delBuilding={delBuilding}
+        updateBuilding={updateBuilding}
         />
         <AddBuilding
         onSubmit={handleSubmit}
@@ -27,5 +36,5 @@ const Buildings = () => {
       </div>
     );
   };
-  
+
   export default Buildings;

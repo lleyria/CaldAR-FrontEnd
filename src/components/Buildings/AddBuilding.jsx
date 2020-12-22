@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const AddBuilding= (props) => {
+const AddBuilding = (props) => {
   const [building, setBuilding] = useState(initialFormState);
   const {
     id,
