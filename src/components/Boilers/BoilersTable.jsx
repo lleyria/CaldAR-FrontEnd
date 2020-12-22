@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Boiler from "./Boiler";
+import "./BoilersTable.css";
 
 const BoilersTable = (props) => {
   return (
     <div>
       <table>
         <thead>
-          <tr>
+          <tr className="container">
             <th>Lot</th>
             <th>Company Name</th>
             <th>Boiler Type</th>
@@ -19,7 +20,7 @@ const BoilersTable = (props) => {
         </thead>
         <tbody>
           {props.boilers.map((boiler) => (
-            <Boiler key={boiler.id} boiler={boiler} />
+            <Boiler key={boiler.id} boiler={boiler} onDelete={props.onDeleteItem} onUpdate={props.onUpdateItem}/>
           ))}
         </tbody>
       </table>
@@ -30,6 +31,8 @@ const BoilersTable = (props) => {
 // PropTypes
 BoilersTable.propTypes = {
   boilers: PropTypes.array.isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
+  onUpdateItem: PropTypes.func.isRequired,
 };
 
 export default BoilersTable;
