@@ -7,7 +7,6 @@ import AddButton from "./AddButton";
 const Boilers = () => {
   const [boilers, setBoilers] = useState(boilersMockData);
   const [formVisible, setFormVisible] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
   const [initialFormState, setInitialFormState] = useState(null);
 
   const showForm = (id) => {
@@ -15,16 +14,14 @@ const Boilers = () => {
     if (id) {
       const result = boilers.filter((boiler) => boiler.id === id);
       setInitialFormState(result.lenght !== 0 ? result[0] : null);
-      setIsEditing(true);
     } else {
-      setIsEditing(false);
       setInitialFormState(null);
     }
   };
 
   const handleSubmit = (boiler) => {
     setFormVisible(false);
-    if (isEditing) {
+    if (initialFormState) {
       setBoilers(
         boilers.map((element) => {
           if (element.id === boiler.id) {
@@ -39,7 +36,6 @@ const Boilers = () => {
           return element;
         })
       );
-      setIsEditing(false);
     } else {
       setBoilers([...boilers, boiler]);
     }
