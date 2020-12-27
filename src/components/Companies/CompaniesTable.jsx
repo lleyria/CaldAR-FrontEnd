@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import  Company from "./Company";
+import "./CompaniesTable.css";
 
 const CompaniesTables = (props) => {
     return (
         <div>
             <table>
                 <thead>
-                    <tr>
+                    <tr className="container">
                         <th>buildings</th>
                         <th>boilers</th>
                         <th>name</th>
@@ -18,7 +19,12 @@ const CompaniesTables = (props) => {
                 </thead>
                 <tbody>
                     {props.companies.map((company) => (
-                        <Company key = {company.id} company={company} />
+                        <Company 
+                            key = {company.id} 
+                            company={company}
+                            onDelete={props.onDeleteItem}
+                            onUpdate={props.onUpdateItem} 
+                         />
                     ))}
                 </tbody>
             </table>    
@@ -29,6 +35,8 @@ const CompaniesTables = (props) => {
 //PropTypes
 CompaniesTables.propTypes = {
     companies: PropTypes.array.isRequired,
+    onDeleteItem: PropTypes.func.isRequired,
+    onUpdateItem: PropTypes.func.isRequired,
 };
 
 export default CompaniesTables

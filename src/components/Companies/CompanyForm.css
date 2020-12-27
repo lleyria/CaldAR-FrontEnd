@@ -1,0 +1,58 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .row fieldset {
+    display: flex;
+    flex-basis: 35%;
+    flex-grow: 1;
+    margin: 0 5px;
+    padding: 0 5px;
+    border: 0;
+  }
+  
+  .field-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+  }
+  
+  .field-container label {
+    padding: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: "Lato", sans-serif;
+  }
+  
+  .field-container input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-family: "Lato", sans-serif;
+  }
+  
+  button {
+    width: 40%;
+    align-self: center;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 7px;
+    border-color: none;
+    font-family: "Lato", sans-serif;
+    font-weight: 200;
+    font-size: 13px;
+    line-height: 14px;
+    background-color: #fc6225;
+    color: #fafafa;
+  }
+  
+  i {
+    color: #232f3e;
+  }
