@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Technician = (props) => {
-    return(
+const Tech = (props) => {
+    const handleUpdateItem = () => {
+        props.onUpdate(props.technician.id);
+    };
+
+    const handleDeleteItem = () => {
+        props.onDelete(props.technician.id);
+    };
+
+    return (
         <tr>
             <td>{props.technician.firstName}</td>
             <td>{props.technician.lastName}</td>
@@ -12,16 +20,18 @@ const Technician = (props) => {
             <td>{props.technician.hourRate}</td>
             <td>{props.technician.monthlyCapacity}</td>
             <td>
-                <i className = 'fas fa-pen' />
-                <i className = 'fas fa-trash' />
+                <i className = 'fas fa-pen' onClick = {handleUpdateItem} />
+                <i className = 'fas fa-trash' onClick = {handleDeleteItem} />
             </td>
         </tr>
     );
 };
 
 // PropTypes
-Technician.propTypes = {
+Tech.propTypes = {
     technician: PropTypes.object.isRequired,
+    onUpdate: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
 };
 
-export default Technician;
+export default Tech;
