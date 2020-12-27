@@ -24,38 +24,18 @@ const CompanyForm = (props) => {
       const handleEdit = (companyToEdit) => {
         setCompany({
           id: companyToEdit.id,
-          buildings: companyToEdit.buildings,
-          boilers: companyToEdit.boilers,
           name: companyToEdit.name,
-          email: companyToEdit.email,
-          contact: companyToEdit.contact,
-          maintenanceHours: companyToEdit.maintenanceHours,
+          companyName: companyToEdit.companyName,
+          address: companyToEdit.address,
+          managerName: companyToEdit.managerName,
+          phone: companyToEdit.phone,
+          boilerType: companyToEdit.boilerType,
         });
       };      
 
     
     return (            
             <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <label>Buildings</label>
-                    <input
-                        type="text"
-                        name="buildings"
-                        placeholder="buildings"
-                        value={company.buildings}
-                        onChange={handleChange}
-                    />
-                </fieldset>
-                <fieldset>
-                    <label>Boilers</label>
-                    <input
-                        type="text"
-                        name="boilers"
-                        placeholder="boilers"
-                        value={company.boilers}
-                        onChange={handleChange}
-                    />
-                </fieldset>
                 <fieldset>
                     <label>Name</label>
                     <input
@@ -67,32 +47,52 @@ const CompanyForm = (props) => {
                     />
                 </fieldset>
                 <fieldset>
-                    <label>Email</label>
+                    <label>Company Name</label>
                     <input
                         type="text"
-                        name="email"
-                        placeholder="email"
-                        value={company.email}
+                        name="companyName"
+                        placeholder="company name"
+                        value={company.companyName}
                         onChange={handleChange}
                     />
                 </fieldset>
                 <fieldset>
-                    <label>Contact</label>
+                    <label>Address</label>
                     <input
-                        type="number"
-                        name="contact"
-                        placeholder="Contact"
-                        value={company.contact}
+                        type="text"
+                        name="address"
+                        placeholder="address"
+                        value={company.address}
                         onChange={handleChange}
                     />
                 </fieldset>
                 <fieldset>
-                    <label>maintenanceHours</label>
+                    <label>Manager Name</label>
+                    <input
+                        type="text"
+                        name="managerName"
+                        placeholder="manager name"
+                        value={company.managerName}
+                        onChange={handleChange}
+                    />
+                </fieldset>
+                <fieldset>
+                    <label>Phone</label>
                     <input
                         type="number"
-                        name="maintenanceHours"
-                        placeholder="Maintenance Hours"
-                        value={company.expirationDate}
+                        name="phone"
+                        placeholder="phone"
+                        value={company.phone}
+                        onChange={handleChange}
+                    />
+                </fieldset>
+                <fieldset>
+                    <label>Boiler Type</label>
+                    <input
+                        type="text"
+                        name="boilerType"
+                        placeholder="Boiler type"
+                        value={company.boilerType}
                         onChange={handleChange}
                     />
                 </fieldset>
@@ -103,12 +103,12 @@ const CompanyForm = (props) => {
 
 const emptyCompany = {
     id: Math.floor(Math.random() * 101),
-    buildings: "",
-    boilers: "",
     name: "",
-    email: "",
-    contact: "",
-    maintenanceHours: "",
+    companyName: "",
+    address: "",
+    managerName: "",
+    phone: "",
+    boilerType: "",
   };
 
 CompanyForm.propTypes = {

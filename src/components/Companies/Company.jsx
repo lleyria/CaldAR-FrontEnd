@@ -13,12 +13,12 @@ const Company = (props) => {
       };
     return (
         <tr>
-            <td>{props.company.buildings}</td>
-            <td>{props.company.boilers}</td>
             <td>{props.company.name}</td>
-            <td>{props.company.email}</td>
-            <td>{props.company.contact}</td>
-            <td>{props.company.maintenanceHours}</td>
+            <td>{props.company.companyName}</td>
+            <td>{props.company.address}</td>
+            <td>{props.company.managerName}</td>
+            <td>{props.company.phone}</td>
+            <td>{props.company.boilerType}</td>
             <td>
                 <i className="fas fa-pen"  onClick={handleUpdateItem}/>
                 <i className="fas fa-trash" onClick={handleDeleteItem}/>

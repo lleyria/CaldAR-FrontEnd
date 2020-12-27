@@ -29,12 +29,12 @@ const Companies = () => {
                 companies.map((element) => {
                     if(element.id === company.id) {
                         element.id = company.id 
-                        element.buildings = company.buildings
-                        element.boilers = company.boilers
                         element.name = company.name
-                        element.email = company.email
-                        element.contact = company.contact
-                        element.maintenanceHours = company.maintenanceHours
+                        element.companyName = company.companyName
+                        element.address = company.address
+                        element.managerName = company.managerName
+                        element.phone = company.phone
+                        element.boilerType = company.boilerType
                     }
                     return element;
                 })
