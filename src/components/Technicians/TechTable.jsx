@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tech from './Tech';
+import './TechTable.css';
 
-const techTable = (props) => {
+const TechTable = (props) => {
     return(
         <div>
             <table>
-                <thread>
-                    <tr>
+                <thead>
+                    <tr className = 'container'>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
@@ -17,10 +18,14 @@ const techTable = (props) => {
                         <th>Monthly Capacity</th>
                         <th>Actions</th>
                     </tr>
-                </thread>
+                </thead>
                 <tbody>
-                    {props.technicians.map((technician) => (
-                        <Tech key={technician.id} technician = {technician} />
+                    {props.technicians.map((technician) =>(
+                        <Tech key = {technician.id}
+                            technician = {technician}
+                            onDelete = {props.onDeleteItem}
+                            onUpdate = {props.onUpdateItem}
+                        />
                     ))}
                 </tbody>
             </table>
@@ -29,9 +34,10 @@ const techTable = (props) => {
 };
 
 // PropTypes
-
-techTable.propTypes = {
+TechTable.propTypes = {
     technicians: PropTypes.array.isRequired,
+    onDeleteItem: PropTypes.func.isRequired,
+    onUpdateItem: PropTypes.func.isRequired,
 };
 
-export default techTable;
+export default TechTable;
