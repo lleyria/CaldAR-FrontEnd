@@ -9,12 +9,12 @@ const CompaniesTables = (props) => {
             <table>
                 <thead>
                     <tr className="container">
-                        <th>name</th>
-                        <th>companyName</th>
-                        <th>address</th>
-                        <th>managerName</th>
-                        <th>phone</th>
-                        <th>boilerType</th>
+                        <th>Name</th>
+                        <th>Company Name</th>
+                        <th>Address</th>
+                        <th>Manager Name</th>
+                        <th>Phone</th>
+                        <th>Boiler type</th>
                     </tr>
                 </thead>
                 <tbody>
