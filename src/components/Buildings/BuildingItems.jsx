@@ -94,24 +94,24 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
         value={buildingToEdit.boilersTypes}
         onChange={onChange}
       />
-      <button onClick={() => onSubmit()}  className="S" style={{ flex: "1" }}>submit</button>
-      <button onClick={() => handleOnClick()} className="X" style={{ flex: "1" }}>X</button>
+      <button onClick={() => onSubmit()}  className="submit-btn" style={{ flex: "1" }}>submit</button>
+      <button onClick={() => handleOnClick()} className="del-btn" style={{ flex: "1" }}>X</button>
     </>
   ) : (
     <div className="box">
       <ul>
-        <li className="id1">{id}</li>
+        <li className="id-column">{id}</li>
         <li>{buildingName}</li>
         <li>{companyName}</li>
         <li>{address}</li>
         <li>{managerName}</li>
         <li>{phone}</li>
-        <li className="id">{boilersId}</li>
-        <li className="id">{boilersTypes}</li>
-        <button onClick={() => delBuilding(id)} className="X">
+        <li className="short-column">{boilersId}</li>
+        <li className="short-column">{boilersTypes}</li>
+        <button onClick={() => delBuilding(id)} className="del-btn">
           X
         </button>
-        <button onClick={() => setIsEditing(true)} className="M">
+        <button onClick={() => setIsEditing(true)} className="modify-btn">
           M
         </button>
       </ul>

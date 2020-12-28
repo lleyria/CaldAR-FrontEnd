@@ -91,7 +91,7 @@ const AddBuilding = (props) => {
             <input
                 type="submit"
                 value="SUBMIT"
-                className='S'
+                className='submit-btn'
                 style={{flex: '1'}}
             />
      
