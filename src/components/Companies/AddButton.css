@@ -1,6 +1,9 @@
-.add-button {
-    background-color: #fafafa;
+.addButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+    width: 987px;
     color: #fc6225;
-    font-size: 35px;
+    font-size: 45px;
     text-align: right;
 }

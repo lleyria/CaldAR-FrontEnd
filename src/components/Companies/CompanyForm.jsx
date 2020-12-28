@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import "./CompanyForm.css";
 const CompanyForm = (props) => {
+
+    const emptyCompany = {
+        id: Math.floor(Math.random() * 101),
+        name: "",
+        companyName: "",
+        address: "",
+        managerName: "",
+        phone: "",
+        boilerType: "",
+      };
+
     const [company, setCompany] = useState(emptyCompany);
   
     useEffect(() => {
@@ -34,29 +45,36 @@ const CompanyForm = (props) => {
       };      
 
     
-    return (            
+    return (
+        <div className="form-container">            
             <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <label>Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="name"
-                        value={company.name}
-                        onChange={handleChange}
-                    />
-                </fieldset>
-                <fieldset>
-                    <label>Company Name</label>
-                    <input
-                        type="text"
-                        name="companyName"
-                        placeholder="company name"
-                        value={company.companyName}
-                        onChange={handleChange}
-                    />
-                </fieldset>
-                <fieldset>
+                <div className="form-title">
+                    <p>{props.initialState ? "Edit company" : "Add a new company"}</p>
+                </div>
+                <div className="row">
+                    <fieldset className="field-container">
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="name"
+                            value={company.name}
+                            onChange={handleChange}
+                        />
+                    </fieldset>
+                    <fieldset className="field-container">
+                        <label>Company Name</label>
+                        <input
+                            type="text"
+                            name="companyName"
+                            placeholder="company name"
+                            value={company.companyName}
+                            onChange={handleChange}
+                        />
+                    </fieldset>
+                </div>
+                <div className="row">
+                <fieldset className="field-container">
                     <label>Address</label>
                     <input
                         type="text"
@@ -66,7 +84,7 @@ const CompanyForm = (props) => {
                         onChange={handleChange}
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="field-container">
                     <label>Manager Name</label>
                     <input
                         type="text"
@@ -76,40 +94,36 @@ const CompanyForm = (props) => {
                         onChange={handleChange}
                     />
                 </fieldset>
-                <fieldset>
-                    <label>Phone</label>
-                    <input
-                        type="number"
-                        name="phone"
-                        placeholder="phone"
-                        value={company.phone}
-                        onChange={handleChange}
-                    />
-                </fieldset>
-                <fieldset>
-                    <label>Boiler Type</label>
-                    <input
-                        type="text"
-                        name="boilerType"
-                        placeholder="Boiler type"
-                        value={company.boilerType}
-                        onChange={handleChange}
-                    />
-                </fieldset>
+                </div>
+                <div className="row">
+                    <fieldset className="field-container">
+                        <label>Phone</label>
+                        <input
+                            type="number"
+                            name="phone"
+                            placeholder="phone"
+                            value={company.phone}
+                            onChange={handleChange}
+                        />
+                    </fieldset>
+                    <fieldset className="field-container">
+                        <label>Boiler Type</label>
+                        <input
+                            type="text"
+                            name="boilerType"
+                            placeholder="Boiler type"
+                            value={company.boilerType}
+                            onChange={handleChange}
+                        />
+                    </fieldset>
+                </div>
             <button type="submit">Confirm</button>
         </form>
+    </div>
     );    
 };
 
-const emptyCompany = {
-    id: Math.floor(Math.random() * 101),
-    name: "",
-    companyName: "",
-    address: "",
-    managerName: "",
-    phone: "",
-    boilerType: "",
-  };
+
 
 CompanyForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,

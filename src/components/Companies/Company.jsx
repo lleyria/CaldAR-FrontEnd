@@ -1,6 +1,7 @@
 import React from 'react';
 //best practices
 import PropTypes from "prop-types";
+import "./Company.css"
 //As a function to implement hooks
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Company = (props) => {
