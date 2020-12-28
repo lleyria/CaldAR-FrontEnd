@@ -7,13 +7,26 @@ const Layout = ({children}) => {
     return(
         <div>
             <div>
-                <SideBar width = {300} height = {'100vh'}>
-                    <h1>Administrators</h1>
-                    <h1>Clients</h1>
-                    <h1>Technicians</h1>
-                    <h1>Boilers</h1>
-                    <h1>Appoiments</h1>
-                    <h1>Reports</h1>
+                <SideBar width = {250} height = {'100vh'}>
+                    <div className='caldar'>CaldAR</div>
+                    <div>
+                        <i className = 'fas fa-laptop'></i> Administrators
+                    </div>
+                    <div>
+                        <i className = 'fas fa-user-friends'></i> Clients
+                    </div>
+                    <div>
+                        <i className = 'fas fa-tools'></i> Technicians
+                    </div>
+                    <div>
+                        <i className = 'fas fa-building'></i> Boilers
+                    </div>
+                    <div>
+                        <i className = 'fas fa-calendar'></i> Appoiments
+                    </div>
+                    <div>
+                        <i className='fab fa-readme'></i> Reports
+                    </div>
                 </SideBar>
             </div>
             <div>

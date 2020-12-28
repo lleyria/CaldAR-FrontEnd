@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import './Sidebar.css';
 
 const Sidebar = ({ width, height, children }) => {
     const [xPosition, setX] = useState(-width);
@@ -32,7 +33,7 @@ const Sidebar = ({ width, height, children }) => {
                 style = {{
                     transform: `translate(${width}px, 20vh)`
                 }}
-                >Menu</button>
+                ></button>
                 <div className = 'content'>{children}</div>
             </div>
         </React.Fragment>
