@@ -20,6 +20,7 @@ const AddBuilding = (props) => {
   const handleSubmit = (event) => {
     props.onSubmit(building);
     event.preventDefault();
+    setBuilding(initialFormState)
   };
 
   return (
@@ -102,7 +103,7 @@ const AddBuilding = (props) => {
 const initialFormState = {
     id: '',
     buildingName: '',
-    CompanyName: '',
+    companyName: '',
     address: '',
     managerName: '',
     phone: '',

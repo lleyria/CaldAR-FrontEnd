@@ -17,7 +17,8 @@ const Buildings = () => {
       const updateBuilding = (updated) =>{
           setBuildings(buildings.map((building) => {
               if(building.id === updated.id) {
-                return updated;
+                building = updated;
+                return updated ;
               }
               return building;
           }))
