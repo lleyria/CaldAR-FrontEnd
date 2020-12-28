@@ -8,7 +8,7 @@ const BoilersTable = (props) => {
     <div>
       <table>
         <thead>
-          <tr className="container">
+          <tr className="headerContainer">
             <th>Lot</th>
             <th>Company Name</th>
             <th>Boiler Type</th>
