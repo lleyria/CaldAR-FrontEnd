@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch} from 'react-router';
 import Layout from './layout/Layout';
 import Home from './components/Home';
-import Buildings from './components/Buldings';
+import BuildingsPage from './pages/BuildingsPage';
 import Companies from './components/Companies';
 import Boilers from './components/Boilers';
 import BoilersType from './components/BoilersType';
@@ -17,11 +17,7 @@ class Routes extends Component {
                         <Home />
                     </Layout>
                 </Route>
-                <Route exact path='/customers/buildings'>
-                    <Layout>
-                        <Buildings />
-                    </Layout>
-                </Route>
+                <Route exact path='/customers/buildings' component={BuildingsPage}  /> 
                 <Route exact path='/customers/companies'>
                     <Layout>
                         <Companies />

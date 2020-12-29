@@ -1,0 +1,155 @@
+[
+  {
+    "id": 1,
+    "buildingName": "Lesch-Schuster",
+    "companyName": null,
+    "address": "482 Farragut Park",
+    "managerName": "Reginald Waldron",
+    "phone": "531-164-7032",
+    "boilersId": [
+      "0c5e4bd8-ca5f-478e-ac0c-32900e9ebd62",
+      "b996c372-2330-41cb-82d5-d7bb1dd334d8"
+    ],
+    "boilersTypes": [3, 3]
+  },
+  {
+    "id": 2,
+    "buildingName": "Rolfson, Block and Flatley",
+    "companyName": "Herzog, Schmeler and Ebert",
+    "address": "15 Del Mar Point",
+    "managerName": "Cammie Ramlot",
+    "phone": "421-337-5310",
+    "boilersId": [
+      "36b72ac5-8c38-4e00-9c27-fabbfda14f5c",
+      "7a4bdf08-142d-467a-b558-4602bcb54dba",
+      "dae12858-e982-43e8-9aae-e7f6d26b47b3",
+      "742a9a0f-44d7-4df3-89cc-2ec9f34be387",
+      "aaa16457-8ae3-497d-84a3-9c2af7f7040f"
+    ],
+    "boilersTypes": [1, 2, 3, 1]
+  },
+  {
+    "id": 3,
+    "buildingName": "Homenick, VonRueden and Mraz",
+    "companyName": null,
+    "address": "09 John Wall Place",
+    "managerName": "Shawna Lobell",
+    "phone": "438-894-3796",
+    "boilersId": [
+      "498252a6-944d-489c-bc49-6cebe6753cc6",
+      "28f4c53e-9896-4be9-9c51-0e4d2312770b"
+    ],
+    "boilersTypes": [3]
+  },
+  {
+    "id": 4,
+    "buildingName": "Howell-Breitenberg",
+    "companyName": "Leuschke and Sons",
+    "address": "3 Summerview Trail",
+    "managerName": "Robyn Shotboulte",
+    "phone": "358-906-8697",
+    "boilersId": [
+      "c791b745-3bc6-49aa-9793-5083cc53e9c3",
+      "0ae6eebf-9d61-4801-95ae-64415bf8f55a",
+      "48963490-52a9-4200-a7f0-a532fef9618d",
+      "97bd6d68-93d5-45ac-8019-c79494ac4d98",
+      "c731ab03-41df-496e-8bad-175966687637",
+      "0dcf6d7b-603b-408a-82ab-edd41ce84bed",
+      "cb585271-ed2d-42ff-8833-13c49e5934a2"
+    ],
+    "boilersTypes": [1, 1]
+  },
+  {
+    "id": 5,
+    "buildingName": "Green, O'Hara and Fisher",
+    "companyName": "Batz, Dach and Larson",
+    "address": "9938 Mayfield Plaza",
+    "managerName": "Marty Hovington",
+    "phone": "510-765-3464",
+    "boilersId": [
+      "35b0bb23-2c69-4c08-af2e-553641d4412e",
+      "ea813b43-4b9d-4d2b-8611-773daa1f7a87",
+      "5fb4dee3-ed6a-4b29-a2a7-a594569cd661",
+      "9b744a98-0c30-4c1d-8fd2-43ae6a01a89d",
+      "8a035d05-5593-4761-b0b4-3fbdc02be119",
+      "8ca60359-58da-43eb-a1fa-d3d06256674a"
+    ],
+    "boilersTypes": [2]
+  },
+  {
+    "id": 6,
+    "buildingName": "Deckow-Parker",
+    "companyName": null,
+    "address": "4664 Clemons Alley",
+    "managerName": "Malanie Pawsey",
+    "phone": "525-739-9680",
+    "boilersId": [
+      "1e95e5c4-f46f-47d6-90d2-edd9662095a1",
+      "65670d71-323f-476b-8feb-ea19c5befd36"
+    ],
+    "boilersTypes": [2, 1]
+  },
+  {
+    "id": 7,
+    "buildingName": "Thompson and Sons",
+    "companyName": null,
+    "address": "2008 Corry Alley",
+    "managerName": "Halley Corradino",
+    "phone": "439-239-7958",
+    "boilersId": [
+      "63a121d1-728c-4d62-af44-101f9b0d8915",
+      "d1c96cfb-143b-4546-bd97-04f8a06f0f07",
+      "46bcfde5-3325-43b7-82c3-5b0d0885a1dc"
+    ],
+    "boilersTypes": [2, 3, 4, 1]
+  },
+  {
+    "id": 8,
+    "buildingName": "Stamm-Ferry",
+    "companyName": "Leffler, Wilderman and Kris",
+    "address": "620 Bowman Crossing",
+    "managerName": "Gilberta Silmon",
+    "phone": "694-909-0445",
+    "boilersId": [
+      "00014f77-8ad2-4e28-a48c-bc440a641413",
+      "dfa86620-6ebf-4a9f-bd2e-941fb265fb0a",
+      "a56629e9-8498-4a0c-9a97-9cef711381b9",
+      "3a40b799-f3b4-491d-883f-14d90399813f",
+      "144b9f78-6765-48bd-9240-9d6aba993f20",
+      "3653534e-00e8-48dc-9a2a-21f542680916",
+      "33e72e30-59af-4c72-85ce-41ce804cb364",
+      "61fa8ea4-245e-465c-a3ba-80b65a9152fe",
+      "c8890a38-ae08-45c3-952f-c81a0e5cb901"
+    ],
+    "boilersTypes": [1, 1, 3]
+  },
+  {
+    "id": 9,
+    "buildingName": "Koch LLC",
+    "companyName": "Wisoky-Hackett",
+    "address": "21 Farmco Circle",
+    "managerName": "Junie Krebs",
+    "phone": "296-478-4407",
+    "boilersId": [
+      "8b63550f-bcdf-4435-a44f-3a913b7b3042",
+      "2a1e23fa-3389-4ca0-9943-6cc8d06c6067",
+      "cba3f0df-c18e-40d8-8663-a89f18cce376",
+      "86dd2467-d084-43b2-9f4d-11eb5b234307"
+    ],
+    "boilersTypes": [3, 3, 4]
+  },
+  {
+    "id": 10,
+    "buildingName": "Mann-Hudson",
+    "companyName": "Harris-Nicolas",
+    "address": "973 Buena Vista Hill",
+    "managerName": "Trula Burrells",
+    "phone": "218-712-2541",
+    "boilersId": [
+      "c7450da6-dafb-4e00-b003-90ed9f0f3971",
+      "9c27e303-1db4-4c60-8784-ecf817616503",
+      "9f623428-68c3-4592-8f1e-4f38afbef32d"
+    ],
+    "boilersTypes": [4]
+  }
+]
