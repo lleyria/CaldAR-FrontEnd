@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
+import buidlingReducer from './buildingReducers'
 
 const rootReducer = combineReducers({
-    buildingReducer 
+    buildings: buidlingReducer,
 });
 
 export default rootReducer;

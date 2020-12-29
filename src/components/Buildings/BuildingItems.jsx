@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { delBuildingAction, updateBuildingAction  } from "../../redux/actions/buildingsActions";
+import { connect } from 'react-redux';
 
 const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -25,7 +27,7 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
   } = building;
 
   const onChange = (e) => {
-    setBuildingToEdit({...building, [e.target.name]:e.target.value})
+    setBuildingToEdit({...buildingToEdit, [e.target.name]:e.target.value})
   }
   return isEditing ? (
     <>
@@ -127,4 +129,19 @@ BuildingItems.propTypes = {
   updateBuilding: PropTypes.func,
 };
 
-export default BuildingItems;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delBuilding: (id) => dispatch(delBuildingAction(id)),
+    updateBuilding: (build) => dispatch(updateBuildingAction(build)),
+
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    buildings: state.buildings,
+  };
+};
+
+export default connect (mapStateToProps, mapDispatchToProps)(BuildingItems);
+

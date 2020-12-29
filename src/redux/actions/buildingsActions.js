@@ -4,23 +4,26 @@ import {
     UPDATE_BUILDING
 } from '../types/buildingTypes'
 
-const addBuilding = (build) => {
+export const addBuildingAction = (build) => {
     return {
         type: ADD_BUILDING,
         payload: build
     }
 }
-
-const delBuilding = () => {
+export const delBuildingAction = (id) => {
     return {
-        type: DEL_BUILDING
+        type: DEL_BUILDING,
+        payload: id
     }
 }
 
-const updateBuilding = () => {
+export const updateBuildingAction = (build) => {
     return {
-        type: UPDATE_BUILDING
+        type: UPDATE_BUILDING,
+        payload: build
     }
 }
+
+
 
 

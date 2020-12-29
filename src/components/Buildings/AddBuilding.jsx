@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { addBuildingAction } from "../../redux/actions/buildingsActions"
+import { connect } from 'react-redux';
 
 const AddBuilding = (props) => {
   const [building, setBuilding] = useState(initialFormState);
@@ -18,7 +20,7 @@ const AddBuilding = (props) => {
   };
 
   const handleSubmit = (event) => {
-    props.onSubmit(building);
+    props.addBuilding(building);
     event.preventDefault();
     setBuilding(initialFormState)
   };
@@ -112,7 +114,19 @@ const initialFormState = {
 };
   // PropTypes
   AddBuilding.propTypes = {
-    onSubmit: PropTypes.func,
+    addBuilding: PropTypes.func,
   };
 
-export default AddBuilding;
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      addBuilding: (build) => dispatch(addBuildingAction(build)),
+    };
+  };
+  
+  const mapStateToProps = (state) => {
+    return {
+      buildings: state.buildings,
+    };
+  };
+  
+  export default connect (mapStateToProps, mapDispatchToProps)(AddBuilding);
