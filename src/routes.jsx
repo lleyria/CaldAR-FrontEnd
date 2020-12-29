@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Route, Switch} from 'react-router';
 import Layout from './layout/Layout';
 import Home from './components/Home';
-import Buildings from './components/Buldings';
-import Companies from './components/Companies';
+import Companies from './components/Companies/Companies';
+import BuildingsPage from './pages/BuildingsPage';
 import Boilers from './components/Boilers/Boilers';
 import BoilersType from './components/BoilersType';
-import Technicians from './components/Technicians';
+import Technicians from './components/Technicians/Technicians';
 
 class Routes extends Component {
     render(){
@@ -17,11 +17,7 @@ class Routes extends Component {
                         <Home />
                     </Layout>
                 </Route>
-                <Route exact path='/customers/buildings'>
-                    <Layout>
-                        <Buildings />
-                    </Layout>
-                </Route>
+                <Route exact path='/customers/buildings' component={BuildingsPage}  /> 
                 <Route exact path='/customers/companies'>
                     <Layout>
                         <Companies />
