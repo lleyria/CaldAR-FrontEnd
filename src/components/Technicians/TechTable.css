@@ -1,0 +1,9 @@
+.container th {
+    color: #fc6225;
+    justify-content: space-around;
+    text-align: center;
+}
+
+tbody {
+    text-align: center;
+}
