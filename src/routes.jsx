@@ -6,7 +6,7 @@ import BuildingsPage from './pages/BuildingsPage';
 import Companies from './components/Companies';
 import Boilers from './components/Boilers';
 import BoilersType from './components/BoilersType';
-import Technicians from './components/Technicians';
+import Technicians from './components/Technicians/Technicians';
 
 class Routes extends Component {
     render(){
