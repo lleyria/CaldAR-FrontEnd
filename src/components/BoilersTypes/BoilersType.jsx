@@ -1,12 +1,14 @@
-import React from "react";
-import BoilersTable from "./BoilersTable";
-import BoilerForm from "./BoilerForm";
+import React, { useState } from "react";
+// import boilersMockData from "../../data/boilersMockData.json";
+// import BoilersTable from "./BoilersTable";
+// import BoilerForm from "./BoilerForm";
 import AddButton from "./AddButton";
-import { connect } from "react-redux";
-import { ADD_BOILER, UPDATE_BOILER } from "../../redux/types/boilersConstants";
-import { addBoiler } from "../../redux/actions/boilersActions";
 
-const Boilers = ({ boilers, formVisible, initialFormState, addBoiler }) => {
+const BoilersType = () => {
+  const [boilers, setBoilers] = useState(boilersMockData);
+  const [formVisible, setFormVisible] = useState(false);
+  const [initialFormState, setInitialFormState] = useState(null);
+
   const showForm = (id) => {
     setFormVisible(true);
     if (id) {
@@ -35,7 +37,7 @@ const Boilers = ({ boilers, formVisible, initialFormState, addBoiler }) => {
         })
       );
     } else {
-      addBoiler(boiler);
+      setBoilers([...boilers, boiler]);
     }
   };
 
@@ -58,20 +60,4 @@ const Boilers = ({ boilers, formVisible, initialFormState, addBoiler }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addBoiler: (boiler) => dispatch(addBoiler(boiler)),
-    // updateBoiler: (boiler) =>
-    //   dispatch({ type: UPDATE_BOILER, payload: boiler }),
-  };
-};
-
-function mapStateToProps(state) {
-  return {
-    boilers: state.boilers,
-    formVisible: state.formVisible,
-    initialFormState: state.initialFormState,
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Boilers);
+export default Boilers;

@@ -4,6 +4,7 @@ import Boiler from "./Boiler";
 import "./BoilersTable.css";
 
 const BoilersTable = (props) => {
+  console.log(props.boilers)
   return (
     <div>
       <table>
