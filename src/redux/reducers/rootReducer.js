@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
+import listTech from './listTech';
 
 const rootReducer = combineReducers({
- // here the reducers
+    list: listTech
 });
 
 export default rootReducer;
