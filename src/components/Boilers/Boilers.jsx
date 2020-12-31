@@ -66,12 +66,12 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
-    boilers: state.boilers,
-    formVisible: state.formVisible,
-    initialFormState: state.initialFormState,
+    boilers: state.boilersReducer.boilers,
+    formVisible: state.boilersReducer.formVisible,
+    initialFormState: state.boilersReducer.initialFormState,
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Boilers);

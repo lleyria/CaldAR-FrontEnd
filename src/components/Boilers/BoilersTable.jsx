@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Boiler from "./Boiler";
 import "./BoilersTable.css";
+import { connect } from "react-redux";
 
-const BoilersTable = (props) => {
-  console.log(props.boilers)
+const BoilersTable = ({ boilers }) => {
   return (
     <div>
       <table>
@@ -20,8 +20,13 @@ const BoilersTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.boilers.map((boiler) => (
-            <Boiler key={boiler.id} boiler={boiler} onDelete={props.onDeleteItem} onUpdate={props.onUpdateItem}/>
+          {boilers.map((boiler) => (
+            <Boiler
+              key={boiler.id}
+              boiler={boiler}
+              // onDelete={props.onDeleteItem}
+              // onUpdate={props.onUpdateItem}
+            />
           ))}
         </tbody>
       </table>
@@ -29,11 +34,16 @@ const BoilersTable = (props) => {
   );
 };
 
-// PropTypes
 BoilersTable.propTypes = {
   boilers: PropTypes.array.isRequired,
   onDeleteItem: PropTypes.func.isRequired,
   onUpdateItem: PropTypes.func.isRequired,
 };
 
-export default BoilersTable;
+const mapStateToProps = (state) => {
+  return {
+    boilers: state.boilersReducer.boilers,
+  };
+};
+
+export default connect(mapStateToProps)(BoilersTable);
