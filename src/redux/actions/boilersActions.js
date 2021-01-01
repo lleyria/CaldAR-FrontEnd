@@ -1,5 +1,6 @@
 import {
   ADD_BOILER,
+  SHOW_FORM,
   DEL_BOILER,
   UPDATE_BOILER,
 } from "../types/boilersConstants";
@@ -11,12 +12,19 @@ export const addBoiler = (boiler) => {
   };
 };
 
-// export const delBoiler = (boiler) => {
-//   return {
-//     type: DEL_BOILER,
-//     payload: boiler.id,
-//   };
-// };
+export const showForm = (id) => {
+  return {
+    type: SHOW_FORM,
+    payload: id,
+  };
+};
+
+export const delBoiler = (id) => {
+  return {
+    type: DEL_BOILER,
+    payload: id,
+  };
+};
 
 // export const updateBoiler = (boiler) => {
 //   return {

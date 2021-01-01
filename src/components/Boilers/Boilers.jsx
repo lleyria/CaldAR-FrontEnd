@@ -7,16 +7,6 @@ import { ADD_BOILER, UPDATE_BOILER } from "../../redux/types/boilersConstants";
 import { addBoiler } from "../../redux/actions/boilersActions";
 
 const Boilers = ({ boilers, formVisible, initialFormState, addBoiler }) => {
-  const showForm = (id) => {
-    setFormVisible(true);
-    if (id) {
-      const result = boilers.filter((boiler) => boiler.id === id);
-      setInitialFormState(result.lenght !== 0 ? result[0] : null);
-    } else {
-      setInitialFormState(null);
-    }
-  };
-
   const handleSubmit = (boiler) => {
     setFormVisible(false);
     if (initialFormState) {
@@ -39,18 +29,14 @@ const Boilers = ({ boilers, formVisible, initialFormState, addBoiler }) => {
     }
   };
 
-  const handleDeleteItem = (id) => {
-    setBoilers(boilers.filter((boiler) => boiler.id !== id));
-  };
-
   return (
     <div className="Boilers">
       <BoilersTable
         boilers={boilers}
-        onDeleteItem={handleDeleteItem}
-        onUpdateItem={showForm}
+        // onDeleteItem={handleDeleteItem}
+        // onUpdateItem={showForm}
       />
-      <AddButton showForm={showForm} />
+      <AddButton />
       {formVisible && (
         <BoilerForm onSubmit={handleSubmit} initialState={initialFormState} />
       )}
@@ -67,11 +53,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    boilers: state.boilersReducer.boilers,
-    formVisible: state.boilersReducer.formVisible,
-    initialFormState: state.boilersReducer.initialFormState,
-  };
+  return state.boilersReducer;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Boilers);

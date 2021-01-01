@@ -1,27 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./Boiler.css";
+import { connect } from "react-redux";
+import { delBoiler } from "../../redux/actions/boilersActions";
 
-const Boiler = (props) => {
+const Boiler = ({ boiler, delBoiler }) => {
   const handleUpdateItem = () => {
-    props.onUpdate(props.boiler.id);
-  };
-
-  const handleDeleteItem = () => {
-    props.onDelete(props.boiler.id);
+    // onUpdate(boiler.id);
   };
 
   return (
     <tr className="boilerRow">
-      <td>{props.boiler.lot}</td>
-      <td>{props.boiler.companyName}</td>
-      <td>{props.boiler.boilerType}</td>
-      <td>{props.boiler.installationDate}</td>
-      <td>{props.boiler.fabricationDate}</td>
-      <td>{props.boiler.expirationDate}</td>
-      <td clasName="icons">
+      <td>{boiler.lot}</td>
+      <td>{boiler.companyName}</td>
+      <td>{boiler.boilerType}</td>
+      <td>{boiler.installationDate}</td>
+      <td>{boiler.fabricationDate}</td>
+      <td>{boiler.expirationDate}</td>
+      <td className="icons">
         <i className="fas fa-pen" onClick={handleUpdateItem} />
-        <i className="fas fa-trash" onClick={handleDeleteItem} />
+        <i className="fas fa-trash" onClick={(id) => {delBoiler(boiler.id)}} />
       </td>
     </tr>
   );
@@ -34,4 +32,4 @@ Boiler.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-export default Boiler;
+export default connect(null, { delBoiler })(Boiler);
