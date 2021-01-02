@@ -2,13 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Boiler.css";
 import { connect } from "react-redux";
-import { delBoiler } from "../../redux/actions/boilersActions";
+import { delBoiler, showForm } from "../../redux/actions/boilersActions";
 
-const Boiler = ({ boiler, delBoiler }) => {
-  const handleUpdateItem = () => {
-    // onUpdate(boiler.id);
-  };
-
+const Boiler = ({ boiler, delBoiler, showForm }) => {
   return (
     <tr className="boilerRow">
       <td>{boiler.lot}</td>
@@ -18,8 +14,18 @@ const Boiler = ({ boiler, delBoiler }) => {
       <td>{boiler.fabricationDate}</td>
       <td>{boiler.expirationDate}</td>
       <td className="icons">
-        <i className="fas fa-pen" onClick={handleUpdateItem} />
-        <i className="fas fa-trash" onClick={(id) => {delBoiler(boiler.id)}} />
+        <i
+          className="fas fa-pen"
+          onClick={() => {
+            showForm(boiler.id);
+          }}
+        />
+        <i
+          className="fas fa-trash"
+          onClick={() => {
+            delBoiler(boiler.id);
+          }}
+        />
       </td>
     </tr>
   );
@@ -28,8 +34,13 @@ const Boiler = ({ boiler, delBoiler }) => {
 // PropTypes
 Boiler.propTypes = {
   boiler: PropTypes.object.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
-export default connect(null, { delBoiler })(Boiler);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delBoiler: (id) => dispatch(delBoiler(id)),
+    showForm: (id) => dispatch(showForm(id)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Boiler);

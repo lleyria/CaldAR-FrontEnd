@@ -21,12 +21,7 @@ const BoilersTable = ({ boilers }) => {
         </thead>
         <tbody>
           {boilers.map((boiler) => (
-            <Boiler
-              key={boiler.id}
-              boiler={boiler}
-              // onDelete={props.onDeleteItem}
-              // onUpdate={props.onUpdateItem}
-            />
+            <Boiler key={boiler.id} boiler={boiler} />
           ))}
         </tbody>
       </table>
@@ -36,8 +31,6 @@ const BoilersTable = ({ boilers }) => {
 
 BoilersTable.propTypes = {
   boilers: PropTypes.array.isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
-  onUpdateItem: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

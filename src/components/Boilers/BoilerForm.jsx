@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./BoilerForm.css";
+import { addBoiler, updateBoiler } from "../../redux/actions/boilersActions";
+import { connect } from "react-redux";
 
-const BoilerForm = (props) => {
+const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
   const emptyBoiler = {
     id: Math.floor(Math.random() * 101),
     lot: "",
@@ -16,19 +18,23 @@ const BoilerForm = (props) => {
   const [boiler, setBoiler] = useState(emptyBoiler);
 
   useEffect(() => {
-    if (props.initialState) {
-      handleEdit(props.initialState);
+    if (initialState) {
+      handleEdit(initialState);
     } else {
       setBoiler(emptyBoiler);
     }
-  }, [props.initialState]);
+  }, [initialState]);
 
   const handleChange = (event) => {
     setBoiler({ ...boiler, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
-    props.onSubmit(boiler);
+    if (initialState) {
+      updateBoiler(boiler);
+    } else {
+      addBoiler(boiler);
+    }
     event.preventDefault();
   };
 
@@ -48,7 +54,7 @@ const BoilerForm = (props) => {
     <div className="form-container">
       <form onSubmit={handleSubmit}>
         <div className="form-title">
-          <p>{props.initialState ? "Edit boiler" : "Add a new boiler"}</p>
+          <p>{initialState ? "Edit boiler" : "Add a new boiler"}</p>
         </div>
         <div className="row">
           <fieldset className="field-container">
@@ -133,10 +139,14 @@ const BoilerForm = (props) => {
 
 // PropTypes
 BoilerForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
   initialState: PropTypes.object,
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addBoiler: (boiler) => dispatch(addBoiler(boiler)),
+    updateBoiler: (boiler) => dispatch(updateBoiler(boiler)),
+  };
+};
 
-
-export default BoilerForm;
+export default connect(null, mapDispatchToProps)(BoilerForm);

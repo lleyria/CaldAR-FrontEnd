@@ -15,7 +15,11 @@ const initialState = {
 const boilersReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOILER:
-      return { ...state, boilers: [...state.boilers, action.payload] };
+      return {
+        ...state,
+        formVisible: false,
+        boilers: [...state.boilers, action.payload],
+      };
     case DEL_BOILER:
       return {
         boilers: [
@@ -28,9 +32,31 @@ const boilersReducer = (state = initialState, action) => {
         const filteredBoiler = state.boilers.filter(
           (boiler) => boiler.id === action.payload
         );
+        console.log(filteredBoiler);
         result = filteredBoiler.lenght !== 0 ? filteredBoiler[0] : null;
+        console.log(result);
       }
+
       return { ...state, formVisible: true, initialFormState: result };
+    }
+    case UPDATE_BOILER: {
+      const boilersWithUpdatedElement = state.boilers.map((element) => {
+        if (element.id === action.payload.id) {
+          element.id = action.payload.id;
+          element.lot = action.payload.lot;
+          element.companyName = action.payload.companyName;
+          element.boilerType = action.payload.boilerType;
+          element.installationDate = action.payload.installationDate;
+          element.fabricationDate = action.payload.fabricationDate;
+          element.expirationDate = action.payload.expirationDate;
+        }
+        return element;
+      });
+      return {
+        ...state,
+        formVisible: false,
+        boilers: boilersWithUpdatedElement,
+      };
     }
     default:
       return state;
