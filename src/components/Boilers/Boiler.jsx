@@ -34,6 +34,8 @@ const Boiler = ({ boiler, delBoiler, showForm }) => {
 // PropTypes
 Boiler.propTypes = {
   boiler: PropTypes.object.isRequired,
+  delBoiler: PropTypes.func.isRequired,
+  showForm: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -139,7 +139,9 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
 
 // PropTypes
 BoilerForm.propTypes = {
-  initialState: PropTypes.object,
+  initialState: PropTypes.object.isRequired,
+  addBoiler: PropTypes.func.isRequired,
+  updateBoiler: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {

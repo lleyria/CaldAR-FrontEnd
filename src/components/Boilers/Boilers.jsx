@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import BoilersTable from "./BoilersTable";
 import BoilerForm from "./BoilerForm";
 import AddButton from "./AddButton";
@@ -12,6 +13,10 @@ const Boilers = ({ formVisible }) => {
       {formVisible && <BoilerForm />}
     </div>
   );
+};
+
+Boilers.propTypes = {
+  formVisible: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {

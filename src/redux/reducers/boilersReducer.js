@@ -38,17 +38,11 @@ const boilersReducer = (state = initialState, action) => {
       return { ...state, formVisible: true, initialFormState: result };
     }
     case UPDATE_BOILER: {
-      const boilersWithUpdatedElement = state.boilers.map((element) => {
-        if (element.id === action.payload.id) {
-          element.id = action.payload.id;
-          element.lot = action.payload.lot;
-          element.companyName = action.payload.companyName;
-          element.boilerType = action.payload.boilerType;
-          element.installationDate = action.payload.installationDate;
-          element.fabricationDate = action.payload.fabricationDate;
-          element.expirationDate = action.payload.expirationDate;
+      const boilersWithUpdatedElement = state.boilers.map((boiler) => {
+        if (boiler.id === action.payload.id) {
+          boiler = action.payload;
         }
-        return element;
+        return boiler;
       });
       return {
         ...state,
