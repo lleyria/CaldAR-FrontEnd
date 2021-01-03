@@ -32,9 +32,7 @@ const boilersReducer = (state = initialState, action) => {
         const filteredBoiler = state.boilers.filter(
           (boiler) => boiler.id === action.payload
         );
-        console.log(filteredBoiler);
         result = filteredBoiler.lenght !== 0 ? filteredBoiler[0] : null;
-        console.log(result);
       }
 
       return { ...state, formVisible: true, initialFormState: result };

@@ -4,18 +4,20 @@ import BoilerForm from "./BoilerForm";
 import AddButton from "./AddButton";
 import { connect } from "react-redux";
 
-const Boilers = ({ boilers, formVisible, initialFormState }) => {
+const Boilers = ({ formVisible }) => {
   return (
     <div className="Boilers">
-      <BoilersTable boilers={boilers} />
+      <BoilersTable />
       <AddButton />
-      {formVisible && <BoilerForm initialState={initialFormState} />}
+      {formVisible && <BoilerForm />}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return state.boilersReducer;
+  return {
+    formVisible: state.boilersReducer.formVisible,
+  };
 };
 
 export default connect(mapStateToProps, null)(Boilers);

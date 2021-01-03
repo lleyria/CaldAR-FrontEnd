@@ -149,4 +149,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(BoilerForm);
+const mapStateToProps = (state) => {
+  return {
+    initialState: state.boilersReducer.initialFormState,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoilerForm);

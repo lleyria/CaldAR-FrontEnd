@@ -39,4 +39,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(BoilersTable);
+export default connect(mapStateToProps, null)(BoilersTable);
