@@ -1,6 +1,22 @@
-import { ADD_TECH, DEL_TECH, UPD_TECH, FORM_TECH } from '../types/TechTypes';
+import { ADD_TECH, DEL_TECH, UPD_TECH } from '../types/TechTypes';
 
-export const addTech = (technician) => ({ type: ADD_TECH, payload: technician });
-export const delTech = (id) => ({ type: DEL_TECH, payload: id });
-export const updTech = (technician) => ({ type: UPD_TECH, payload: technician });
-export const formTech = (id) => ({ type: FORM_TECH, payload: id });
+export const addTech = (tech) => {
+    return {
+        type: ADD_TECH,
+        payload: tech
+    }
+}
+
+export const delTech = (id) => {
+    return {
+        type: DEL_TECH,
+        payload: id
+    }
+}
+
+export const updTech = (tech) => {
+    return {
+        type: UPD_TECH,
+        payload: tech
+    }
+}

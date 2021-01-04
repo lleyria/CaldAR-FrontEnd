@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import techReducers from './TechReducers';
 
 const rootReducer = combineReducers({
-    techReducers
+    technicians: techReducers,
 });
 
 export default rootReducer;
