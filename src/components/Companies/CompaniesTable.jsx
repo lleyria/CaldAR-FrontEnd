@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import  Company from "./Company";
 import "./CompaniesTable.css";
+import { connect } from "react-redux";
 
-const CompaniesTables = (props) => {
+const CompaniesTable = ({ companies }) => {
     return (
         <div>
             <table>
                 <thead>
-                    <tr className="container">
+                    <tr className="headerContainer">
                         <th>Name</th>
                         <th>Company Name</th>
                         <th>Address</th>
@@ -18,12 +19,10 @@ const CompaniesTables = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.companies.map((company) => (
+                    {companies.map((company) => (
                         <Company 
                             key = {company.id} 
-                            company={company}
-                            onDelete={props.onDeleteItem}
-                            onUpdate={props.onUpdateItem} 
+                            company={company}                            
                          />
                     ))}
                 </tbody>
@@ -33,10 +32,14 @@ const CompaniesTables = (props) => {
 };
 
 //PropTypes
-CompaniesTables.propTypes = {
-    companies: PropTypes.array.isRequired,
-    onDeleteItem: PropTypes.func.isRequired,
-    onUpdateItem: PropTypes.func.isRequired,
+CompaniesTable.propTypes = {
+    companies: PropTypes.array.isRequired,    
 };
 
-export default CompaniesTables
+const mapStateToProps = (state) => {
+    return {
+      companies: state.companiesReducer.companies,
+    };
+  };
+
+  export default connect(mapStateToProps, null)(CompaniesTable);

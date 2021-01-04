@@ -1,3 +1,4 @@
-export const ADD_BUILDING = 'ADD_BUILDING'
-export const DEL_BUILDING = 'DEL_BUILDING'
-export const UPDATE_BUILDING = 'UPDATE_BUILDING'
+export const ADD_COMPANY = 'ADD_COMPANY'
+export const SHOW_FORM = "SHOW_FORM";
+export const DEL_COMPANY = 'DEL_COMPANY'
+export const UPDATE_COMPANY = 'UPDATE_COMPANY'

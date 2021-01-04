@@ -1,24 +1,11 @@
 import {
     ADD_COMPANY,
     DEL_COMPANY,
+    SHOW_FORM,
     UPDATE_COMPANY
 } from '../types/companyTypes'
 
-const addCompany = (build) => {
-    return {
-        type: ADD_COMPANY,
-        payload: build
-    }
-}
-
-const delCompany = () => {
-    return {
-        type: DEL_COMPANY
-    }
-}
-
-const updateCompany = () => {
-    return {
-        type: UPDATE_COMPANY
-    }
-}
+export const addCompany = (company) => ({ type: ADD_COMPANY, payload: company });
+export const delCompany = (id) => ({ type: DEL_COMPANY, payload: id });
+export const showForm = (id) => ({ type: SHOW_FORM, payload: id });
+export const updateCompany = (company) => ({ type: UPDATE_COMPANY, payload: company });
