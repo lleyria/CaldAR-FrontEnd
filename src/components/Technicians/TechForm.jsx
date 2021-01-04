@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './TechForm.css';
+import { addTech } from '../../redux/actions';
+import { connect } from 'react-redux';
 
-const TechForm = (props) => {
+const techForm = (props) => {
     const [technician, setTechnician] = useState(emptyTechnician);
 
     useEffect(() => {
@@ -133,9 +135,21 @@ const emptyTechnician = {
 
 // PropTypes
 
-TechForm.propTypes = {
+techForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     initialState: PropTypes.object,
 };
 
-export default TechForm;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        techForm: (tech) => dispatch(addTech(tech)),
+    };
+};
+
+const mapStateToProps = (state) => {
+    return {
+        technicians: state.technicians,
+    };
+};
+
+export default connect (mapStateToProps, mapDispatchToProps)(techForm);
