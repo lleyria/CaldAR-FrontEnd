@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import  Company from "./Company";
 import "./CompaniesTable.css";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { getCompanies } from "../../redux/actions/companiesActions"
 
-const CompaniesTable = ({ companies }) => {
+const CompaniesTable = ({ companies, getCompanies }) => {
+    useEffect(() => {
+        getCompanies();
+    }, [getCompanies]);
+
     return (
         <div>
             <table>
@@ -33,8 +39,18 @@ const CompaniesTable = ({ companies }) => {
 
 //PropTypes
 CompaniesTable.propTypes = {
-    companies: PropTypes.array.isRequired,    
+    companies: PropTypes.array.isRequired,
+    getCompanies: PropTypes.func.isRequired,    
 };
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+      {
+        getCompanies: getCompanies,
+      },
+      dispatch
+    );
+  };
 
 const mapStateToProps = (state) => {
     return {
@@ -42,4 +58,4 @@ const mapStateToProps = (state) => {
     };
   };
 
-  export default connect(mapStateToProps, null)(CompaniesTable);
+  export default connect(mapStateToProps, mapDispatchToProps)(CompaniesTable);

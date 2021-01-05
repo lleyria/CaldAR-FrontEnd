@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import "./CompanyForm.css";
 import { addCompany, updateCompany } from "../../redux/actions/companiesActions";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 const CompanyForm = ({ addCompany, updateCompany, initialState }) => {
     const emptyCompany = {
-        id: Math.floor(Math.random() * 101),
+        _id: Math.floor(Math.random() * 101),
         name: "",
         companyName: "",
         address: "",
@@ -40,7 +41,7 @@ const CompanyForm = ({ addCompany, updateCompany, initialState }) => {
   
     const handleEdit = (companyToEdit) => {
       setCompany({
-        id: companyToEdit.id,
+        _id: companyToEdit._id,
         name: companyToEdit.name,
         companyName: companyToEdit.companyName,
         address: companyToEdit.address,
@@ -136,10 +137,13 @@ const CompanyForm = ({ addCompany, updateCompany, initialState }) => {
   };
   
   const mapDispatchToProps = (dispatch) => {
-    return {
-      addCompany: (company) => dispatch(addCompany(company)),
-      updateCompany: (company) => dispatch(updateCompany(company)),
-    };
+    return bindActionCreators(
+      {
+        addCompany: addCompany,
+        updateCompany: updateCompany,
+      },
+      dispatch
+    );
   };
   
   const mapStateToProps = (state) => {

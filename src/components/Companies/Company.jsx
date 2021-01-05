@@ -3,10 +3,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Company.css"
 import { connect } from "react-redux";
-import { delCompany, showForm } from "../../redux/actions/companiesActions";
+import { deleteCompany, showForm } from "../../redux/actions/companiesActions";
+import { bindActionCreators } from "redux";
 
 
-const Company = ({ company, delCompany, showForm }) => {
+const Company = ({ company, deleteCompany, showForm }) => {
   return (
     <tr className="companyRow">
       <td>{company.companyName}</td>
@@ -18,13 +19,13 @@ const Company = ({ company, delCompany, showForm }) => {
         <i
           className="fas fa-pen"
           onClick={() => {
-            showForm(company.id);
+            showForm(company._id);
           }}
         />
         <i
           className="fas fa-trash"
           onClick={() => {
-            delCompany(company.id);
+            deleteCompany(company._id);
           }}
         />
       </td>
@@ -35,15 +36,25 @@ const Company = ({ company, delCompany, showForm }) => {
 // PropTypes
 Company.propTypes = {
   company: PropTypes.object.isRequired,
-  delCompany: PropTypes.func.isRequired,
+  deleteCompany: PropTypes.func.isRequired,
   showForm: PropTypes.func.isRequired,
 };
 
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     deleteCompany: (id) => dispatch(deleteCompany(id)),
+//     showForm: (id) => dispatch(showForm(id)),
+//   };
+// };
+
 const mapDispatchToProps = (dispatch) => {
-  return {
-    delCompany: (id) => dispatch(delCompany(id)),
-    showForm: (id) => dispatch(showForm(id)),
-  };
+  return bindActionCreators(
+    {
+      deleteCompany: deleteCompany,
+      showForm: showForm,
+    },
+    dispatch
+  );
 };
 
 export default connect(null, mapDispatchToProps)(Company);
