@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Boiler from "./Boiler";
 import "./BoilersTable.css";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { getBoilers } from "../../redux/actions/boilersActions";
 
-const BoilersTable = ({ boilers }) => {
+const BoilersTable = ({ boilers, getBoilers }) => {
+  useEffect(() => {
+    getBoilers();
+  }, [getBoilers]);
+
   return (
     <div>
       <table>
@@ -31,6 +37,16 @@ const BoilersTable = ({ boilers }) => {
 
 BoilersTable.propTypes = {
   boilers: PropTypes.array.isRequired,
+  getBoilers: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getBoilers: getBoilers,
+    },
+    dispatch
+  );
 };
 
 const mapStateToProps = (state) => {
@@ -39,4 +55,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(BoilersTable);
+export default connect(mapStateToProps, mapDispatchToProps)(BoilersTable);

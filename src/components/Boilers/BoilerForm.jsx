@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import "./BoilerForm.css";
 import { addBoiler, updateBoiler } from "../../redux/actions/boilersActions";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
+const BoilerForm = ({ addBoiler, initialState }) => {
   const emptyBoiler = {
-    id: Math.floor(Math.random() * 101),
+    _id: Math.floor(Math.random() * 101),
     lot: "",
     companyName: "",
     boilerType: "",
@@ -40,7 +41,7 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
 
   const handleEdit = (boilerToEdit) => {
     setBoiler({
-      id: boilerToEdit.id,
+      _id: boilerToEdit._id,
       lot: boilerToEdit.lot,
       companyName: boilerToEdit.companyName,
       boilerType: boilerToEdit.boilerType,
@@ -145,11 +146,15 @@ BoilerForm.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    addBoiler: (boiler) => dispatch(addBoiler(boiler)),
-    updateBoiler: (boiler) => dispatch(updateBoiler(boiler)),
-  };
+  return bindActionCreators(
+    {
+      addBoiler: addBoiler,
+      updateBoiler: updateBoiler,
+    },
+    dispatch
+  );
 };
+
 
 const mapStateToProps = (state) => {
   return {

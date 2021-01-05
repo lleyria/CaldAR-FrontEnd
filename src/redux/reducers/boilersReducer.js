@@ -1,43 +1,88 @@
-import boilersMockData from "../../data/boilersMockData.json";
 import {
-  ADD_BOILER,
-  DEL_BOILER,
   SHOW_FORM,
-  UPDATE_BOILER,
+  GET_BOILERS_FETCHING,
+  GET_BOILERS_FULFILLED,
+  GET_BOILERS_REJECTED,
+  ADD_BOILERS_FULFILLED,
+  ADD_BOILERS_FETCHING,
+  ADD_BOILERS_REJECTED,
+  DELETE_BOILERS_FULFILLED,
+  DELETE_BOILERS_FETCHING,
+  DELETE_BOILERS_REJECTED,
+  UPDATE_BOILERS_FULFILLED,
+  UPDATE_BOILERS_FETCHING,
+  UPDATE_BOILERS_REJECTED,
 } from "../../redux/types/boilersConstants";
 
 const initialState = {
-  boilers: boilersMockData,
+  boilers: [],
+  error: false,
   formVisible: false,
   initialFormState: null,
+  isLoading: false,
 };
 
 const boilersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_BOILER:
+    case GET_BOILERS_FETCHING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case GET_BOILERS_FULFILLED:
+      return {
+        ...state,
+        isLoading: false,
+        boilers: action.payload,
+      };
+    case GET_BOILERS_REJECTED:
+      return {
+        ...state,
+        isLoading: false,
+        error: true,
+      };
+    case ADD_BOILERS_FETCHING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case ADD_BOILERS_FULFILLED:
       return {
         ...state,
         formVisible: false,
+        isLoading: false,
         boilers: [...state.boilers, action.payload],
       };
-    case DEL_BOILER:
+    case ADD_BOILERS_REJECTED:
       return {
-        boilers: [
-          ...state.boilers.filter((boiler) => boiler.id !== action.payload),
-        ],
+        ...state,
+        isLoading: false,
+        error: true,
       };
-    case SHOW_FORM: {
-      let result = null;
-      if (action.payload) {
-        const filteredBoiler = state.boilers.filter(
-          (boiler) => boiler.id === action.payload
-        );
-        result = filteredBoiler.lenght !== 0 ? filteredBoiler[0] : null;
-      }
+    case DELETE_BOILERS_FETCHING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case DELETE_BOILERS_FULFILLED:
+      return {
+        ...state,
+        isLoading: false,
+        boilers: state.boilers.filter((boiler) => boiler._id !== action.payload),
+      };
+    case DELETE_BOILERS_REJECTED:
+      return {
+        ...state,
+        isLoading: false,
+        error: true,
+      };
 
-      return { ...state, formVisible: true, initialFormState: result };
-    }
-    case UPDATE_BOILER: {
+    case UPDATE_BOILERS_FETCHING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case UPDATE_BOILERS_FULFILLED: {
       const boilersWithUpdatedElement = state.boilers.map((boiler) => {
         if (boiler.id === action.payload.id) {
           boiler = action.payload;
@@ -47,9 +92,41 @@ const boilersReducer = (state = initialState, action) => {
       return {
         ...state,
         formVisible: false,
+        isLoading: false,
         boilers: boilersWithUpdatedElement,
       };
     }
+    case UPDATE_BOILERS_REJECTED:
+      return {
+        ...state,
+        isLoading: false,
+        error: true,
+      };
+
+    case SHOW_FORM: {
+      let result = null;
+      if (action.payload) {
+        const filteredBoiler = state.boilers.filter(
+          (boiler) => boiler._id === action.payload
+        );
+        result = filteredBoiler.lenght !== 0 ? filteredBoiler[0] : null;
+      }
+
+      return { ...state, formVisible: true, initialFormState: result };
+    }
+    // case UPDATE_BOILER: {
+    //   const boilersWithUpdatedElement = state.boilers.map((boiler) => {
+    //     if (boiler.id === action.payload.id) {
+    //       boiler = action.payload;
+    //     }
+    //     return boiler;
+    //   });
+    //   return {
+    //     ...state,
+    //     formVisible: false,
+    //     boilers: boilersWithUpdatedElement,
+    //   };
+    // }
     default:
       return state;
   }

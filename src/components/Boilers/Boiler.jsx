@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Boiler.css";
 import { connect } from "react-redux";
-import { delBoiler, showForm } from "../../redux/actions/boilersActions";
+import { deleteBoiler, showForm } from "../../redux/actions/boilersActions";
+import { bindActionCreators } from "redux";
 
-const Boiler = ({ boiler, delBoiler, showForm }) => {
+const Boiler = ({ boiler, deleteBoiler, showForm }) => {
   return (
     <tr className="boilerRow">
       <td>{boiler.lot}</td>
@@ -17,13 +18,13 @@ const Boiler = ({ boiler, delBoiler, showForm }) => {
         <i
           className="fas fa-pen"
           onClick={() => {
-            showForm(boiler.id);
+            showForm(boiler._id);
           }}
         />
         <i
           className="fas fa-trash"
           onClick={() => {
-            delBoiler(boiler.id);
+            deleteBoiler(boiler._id);
           }}
         />
       </td>
@@ -34,15 +35,25 @@ const Boiler = ({ boiler, delBoiler, showForm }) => {
 // PropTypes
 Boiler.propTypes = {
   boiler: PropTypes.object.isRequired,
-  delBoiler: PropTypes.func.isRequired,
+  deleteBoiler: PropTypes.func.isRequired,
   showForm: PropTypes.func.isRequired,
 };
 
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     delBoiler: (id) => dispatch(delBoiler(id)),
+//     showForm: (id) => dispatch(showForm(id)),
+//   };
+// };
+
 const mapDispatchToProps = (dispatch) => {
-  return {
-    delBoiler: (id) => dispatch(delBoiler(id)),
-    showForm: (id) => dispatch(showForm(id)),
-  };
+  return bindActionCreators(
+    {
+      deleteBoiler: deleteBoiler,
+      showForm: showForm,
+    },
+    dispatch
+  );
 };
 
 export default connect(null, mapDispatchToProps)(Boiler);
