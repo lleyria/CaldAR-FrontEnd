@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { delBuildingAction, updateBuildingAction  } from "../../redux/actions/buildingsActions";
+import { delBuilding, updateBuilding  } from "../../redux/actions/buildingsActions";
 import { connect } from 'react-redux';
 
 const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
@@ -131,8 +131,8 @@ BuildingItems.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    delBuilding: (id) => dispatch(delBuildingAction(id)),
-    updateBuilding: (build) => dispatch(updateBuildingAction(build)),
+    delBuilding: (id) => dispatch(delBuilding(id)),
+    updateBuilding: (build) => dispatch(updateBuilding(build)),
 
   };
 };

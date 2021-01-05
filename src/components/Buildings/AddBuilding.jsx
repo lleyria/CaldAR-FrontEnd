@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { addBuildingAction } from "../../redux/actions/buildingsActions"
+import { addBuilding } from "../../redux/actions/buildingsActions"
 import { connect } from 'react-redux';
 
 const AddBuilding = (props) => {
@@ -119,7 +119,7 @@ const initialFormState = {
 
   const mapDispatchToProps = (dispatch) => {
     return {
-      addBuilding: (build) => dispatch(addBuildingAction(build)),
+      addBuilding: (build) => dispatch(addBuilding(build)),
     };
   };
   
