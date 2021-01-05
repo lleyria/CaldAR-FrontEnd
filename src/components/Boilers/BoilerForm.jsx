@@ -5,7 +5,7 @@ import { addBoiler, updateBoiler } from "../../redux/actions/boilersActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-const BoilerForm = ({ addBoiler, initialState }) => {
+const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
   const emptyBoiler = {
     _id: Math.floor(Math.random() * 101),
     lot: "",

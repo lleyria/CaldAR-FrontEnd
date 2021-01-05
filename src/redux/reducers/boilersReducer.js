@@ -68,7 +68,9 @@ const boilersReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        boilers: state.boilers.filter((boiler) => boiler._id !== action.payload),
+        boilers: state.boilers.filter(
+          (boiler) => boiler._id !== action.payload
+        ),
       };
     case DELETE_BOILERS_REJECTED:
       return {
@@ -84,7 +86,7 @@ const boilersReducer = (state = initialState, action) => {
       };
     case UPDATE_BOILERS_FULFILLED: {
       const boilersWithUpdatedElement = state.boilers.map((boiler) => {
-        if (boiler.id === action.payload.id) {
+        if (boiler._id === action.payload._id) {
           boiler = action.payload;
         }
         return boiler;
@@ -114,19 +116,6 @@ const boilersReducer = (state = initialState, action) => {
 
       return { ...state, formVisible: true, initialFormState: result };
     }
-    // case UPDATE_BOILER: {
-    //   const boilersWithUpdatedElement = state.boilers.map((boiler) => {
-    //     if (boiler.id === action.payload.id) {
-    //       boiler = action.payload;
-    //     }
-    //     return boiler;
-    //   });
-    //   return {
-    //     ...state,
-    //     formVisible: false,
-    //     boilers: boilersWithUpdatedElement,
-    //   };
-    // }
     default:
       return state;
   }

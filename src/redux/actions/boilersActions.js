@@ -108,12 +108,12 @@ const updateBoilerRejected = () => ({
   type: UPDATE_BOILERS_REJECTED,
 });
 
-export const updateBoiler = (payload) => (dispatch) => {
+export const updateBoiler = (boiler) => (dispatch) => {
   dispatch(updateBoilerFetching());
-  return fetch(`${URL}/?id=${payload.id}`, { method: "PUT" })
+  return fetch(`${URL}/?id=${boiler._id}`, { method: "PUT", body: JSON.stringify(boiler) })
     .then((data) => data.json())
     .then(() => {
-      dispatch(updateBoilerFulfilled(payload.id));
+      dispatch(updateBoilerFulfilled(boiler));
     })
     .catch(() => {
       dispatch(updateBoilerRejected());
@@ -121,7 +121,3 @@ export const updateBoiler = (payload) => (dispatch) => {
 };
 
 export const showForm = (id) => ({ type: SHOW_FORM, payload: id });
-// export const updateBoiler = (boiler) => ({
-//   type: UPDATE_BOILER,
-//   payload: boiler,
-// });
