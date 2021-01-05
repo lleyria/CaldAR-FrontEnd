@@ -1,13 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {
+    modal as modalAction,
+    } from '../../redux/actions/TechActions';
 
 const Tech = (props) => {
     const handleUpdateItem = () => {
-        props.onUpdate(props.technician.id);
+        props.modal();
+        //props.onUpdate(props.technician.id);
+        // Ejecutar action, que reciba props.technician.datos
     };
 
     const handleDeleteItem = () => {
-        props.onDelete(props.technician.id);
+        //props.onDelete(props.technician.id);
     };
 
     return (
@@ -32,6 +39,16 @@ Tech.propTypes = {
     technician: PropTypes.object.isRequired,
     onUpdate: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    modal: PropTypes.func
 };
 
-export default Tech;
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    modal: modalAction,
+}, dispatch);
+
+const mapStateToProps = (state) => {
+    return {
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tech);

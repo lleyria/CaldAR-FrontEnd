@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tech from './Tech';
 import './TechTable.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const TechTable = (props) => {
     return(
@@ -23,8 +25,6 @@ const TechTable = (props) => {
                     {props.technicians.map((technician) =>(
                         <Tech key = {technician.id}
                             technician = {technician}
-                            onDelete = {props.onDeleteItem}
-                            onUpdate = {props.onUpdateItem}
                         />
                     ))}
                 </tbody>
@@ -40,4 +40,12 @@ TechTable.propTypes = {
     onUpdateItem: PropTypes.func.isRequired,
 };
 
-export default TechTable;
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+}, dispatch);
+
+const mapStateToProps = (state) => {
+return {
+};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TechTable);

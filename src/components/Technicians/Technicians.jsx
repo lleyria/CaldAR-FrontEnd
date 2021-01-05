@@ -1,64 +1,44 @@
 import React, { useState } from 'react';
-import TechMockData from '../../data/Technicians.json';
+// import TechMockData from '../../data/Technicians.json';
 import TechTable from './TechTable';
 import TechForm from './TechForm';
 import AddButton from './AddButton';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import {
+    modal as modalAction,
+    } from '../../redux/actions/TechActions';
 
-const Techs = () => {
-    const [technicians, setTechnicians] = useState(TechMockData);
-    const [formVisible, setFormVisible] = useState(false);
-    const [initialFormState, setInitialFormState] = useState(null);
-
-    const showForm = (id) => {
-        setFormVisible(true);
-        if (id) {
-            const result = technicians.filter((technician) => technician.id === id);
-            setInitialFormState(result.length !== 0 ? result[0] : null);
-        } else {
-            setInitialFormState(null);
-        }
-    };
-
-    const handleSubmit = (technician) => {
-        setFormVisible(false);
-        if (initialFormState) {
-            setTechnicians(
-                technicians.map((element) => {
-                    if (element.id === technician.id) {
-                        element.id = technician.id;
-                        element.firstName = technician.firstName;
-                        element.lastName = technician.lastName;
-                        element.email = technician.email;
-                        element.boilersType = technician.boilersType;
-                        element.professionalLevel = technician.professionalLevel;
-                        element.hourRate = technician.hourRate;
-                        element.monthlyCapacity = technician.monthlyCapacity;
-                    }
-                    return element;
-                })
-            );
-        } else {
-            setTechnicians([...technicians, technician]);
-        }
-    };
-
-    const handleDeleteItem = (id) => {
-        setTechnicians(technicians.filter((technician) => technician.id !== id));
-    };
-
+const Techs = ({ techData, isOpen, modal }) => {
     return (
         <div className = 'Technicians'>
             <TechTable
-                technicians = {technicians}
-                onDeleteItem = {handleDeleteItem}
-                onUpdateItem = {showForm}
+                technicians = {techData}
             />
-            <AddButton showForm = {showForm} />
-            {formVisible && (
-                <TechForm onSubmit = {handleSubmit} initialState = {initialFormState} />
+            <AddButton showForm = {modal} />
+            {isOpen && (
+                <TechForm />
             )}
         </div>
     );
 };
 
-export default Techs;
+Techs.propTypes = {
+    techData: PropTypes.arrayOf(PropTypes.object),
+    isOpen: PropTypes.bool,
+    modal: PropTypes.func
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    modal: modalAction
+}, dispatch);
+
+const mapStateToProps = (state) => {
+    return {
+        techData: state.techReducers.techData,
+        isOpen: state.techReducers.isOpen
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Techs);

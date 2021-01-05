@@ -1,4 +1,4 @@
-import { ADD_TECH, DEL_TECH, UPD_TECH } from '../types/TechTypes';
+import { ADD_TECH, DEL_TECH, UPD_TECH, MODAL } from '../types/TechTypes';
 
 export const addTech = (tech) => {
     return {
@@ -19,4 +19,14 @@ export const updTech = (tech) => {
         type: UPD_TECH,
         payload: tech
     }
+}
+
+export const modal = () => {
+    return {
+        type: MODAL
+    }
+}
+
+export const getTech = (tech) => {
+    // Completar
 }
