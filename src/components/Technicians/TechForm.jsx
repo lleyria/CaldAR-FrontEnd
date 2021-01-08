@@ -2,56 +2,55 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './TechForm.css';
 import {
-    addTech as addTechAction,
-    updTech as updTechAction
+    addTech,
+    updTech
     } from '../../redux/actions/TechActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-const techForm = ({ addTech, updTech }) => {
-    console.log(typeof addTech, addTech);
+const techForm = ({ addTech, updTech, initialState }) => {
     const emptyTechnician = {
-        id: Math.floor(Math.random() * 101),
+        _id: Math.floor(Math.random() * 101),
         firstName: '',
         lastName: '',
         email: '',
-        boilersType: '',
+        boilersTypeId: '',
         professionalLevel: '',
         hourRate: '',
         monthlyCapacity: '',
     };
-    
+
     const [technician, setTechnician] = useState(emptyTechnician);
 
     useEffect(() => {
-        if(techReducers) {
-            handleEdit(techReducers);
+        if(initialState) {
+            handleEdit(initialState);
         } else {
             setTechnician(emptyTechnician);
         }
-    }, [techReducers]);
+    }, [initialState]);
 
     const handleChange = (event) => {
         setTechnician({ ...technician, [event.target.name]: event.target.value });
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(technician);
-        if (techReducers) {
+        if (initialState) {
             updTech(technician);
         } else {
+            console.log(technician);
             addTech(technician);
         }
+        event.preventDefault();
     };
 
     const handleEdit = (techToEdit) => {
         setTechnician({
-            id: techToEdit.id,
+            _id: techToEdit._id,
             firstName: techToEdit.firstName,
             lastName: techToEdit.lastName,
             email: techToEdit.email,
-            boilersType: techToEdit.boilersType,
+            boilersTypeId: techToEdit.boilersTypeId,
             professionalLevel: techToEdit.professionalLevel,
             hourRate: techToEdit.hourRate,
             monthlyCapacity: techToEdit.monthlyCapacity,
@@ -62,7 +61,7 @@ const techForm = ({ addTech, updTech }) => {
         <div className = 'form-container'>
             <form onSubmit = {handleSubmit}>
                 <div className = 'form-title'>
-                    <p>{techReducers ? 'Edit Technician' : 'Add a new technician'}</p>
+                    <p>{initialState ? 'Edit Technician' : 'Add a new technician'}</p>
                 </div>
                 <div className="row">
                     <fieldset className="field-container">
@@ -101,9 +100,9 @@ const techForm = ({ addTech, updTech }) => {
                         <label>Boiler Types</label>
                         <input
                         type="text"
-                        name="boilersType"
+                        name="boilersTypeId"
                         placeholder="Boilers Type"
-                        value={technician.boilersType}
+                        value={technician.boilersTypeId}
                         onChange={handleChange}
                         />
                     </fieldset>
@@ -151,20 +150,21 @@ const techForm = ({ addTech, updTech }) => {
 // PropTypes
 
 techForm.propTypes = {
-    techReducers: PropTypes.object.isRequired,
+    initialState: PropTypes.object.isRequired,
     addTech: PropTypes.func.isRequired,
     updTech: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-        addTech: addTechAction,
-        updTech: updTechAction
-}, dispatch);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        addTech: addTech,
+        updTech: updTech,
+    }, dispatch);
+};
 
 const mapStateToProps = (state) => {
     return {
-        techFind: state.techReducers.techFind,
-        isEditing: state.techReducers.isEditing
+        initialState: state.techReducer.initialFormState,
     };
 };
 

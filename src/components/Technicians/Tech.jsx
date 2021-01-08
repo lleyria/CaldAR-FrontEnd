@@ -2,33 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-    modal as modalAction,
-    } from '../../redux/actions/TechActions';
+import { delTech, showForm } from '../../redux/actions/TechActions';
 
-const Tech = (props) => {
-    const handleUpdateItem = () => {
-        props.modal();
-        //props.onUpdate(props.technician.id);
-        // Ejecutar action, que reciba props.technician.datos
-    };
-
-    const handleDeleteItem = () => {
-        //props.onDelete(props.technician.id);
-    };
+const Tech = ({ technician, delTech, showForm }) => {
 
     return (
         <tr>
-            <td>{props.technician.firstName}</td>
-            <td>{props.technician.lastName}</td>
-            <td>{props.technician.email}</td>
-            <td>{props.technician.boilersType}</td>
-            <td>{props.technician.professionalLevel}</td>
-            <td>{props.technician.hourRate}</td>
-            <td>{props.technician.monthlyCapacity}</td>
+            <td>{technician.firstName}</td>
+            <td>{technician.lastName}</td>
+            <td>{technician.email}</td>
+            <td>{technician.boilersType}</td>
+            <td>{technician.professionalLevel}</td>
+            <td>{technician.hourRate}</td>
+            <td>{technician.monthlyCapacity}</td>
             <td>
-                <i className = 'fas fa-pen' onClick = {handleUpdateItem} />
-                <i className = 'fas fa-trash' onClick = {handleDeleteItem} />
+                <i className = 'fas fa-pen' onClick = {() => { showForm(technician._id) }} />
+                <i className = 'fas fa-trash' onClick = {() => { delTech(technician._id) }} />
             </td>
         </tr>
     );
@@ -37,18 +26,13 @@ const Tech = (props) => {
 // PropTypes
 Tech.propTypes = {
     technician: PropTypes.object.isRequired,
-    onUpdate: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    modal: PropTypes.func
+    delTech: PropTypes.func.isRequired,
+    showForm: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-    modal: modalAction,
-}, dispatch);
+const mapDispatchToProps = (dispatch) => {return bindActionCreators({
+    delTech: delTech,
+    showForm: showForm,
+}, dispatch)};
 
-const mapStateToProps = (state) => {
-    return {
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Tech);
+export default connect(null, mapDispatchToProps)(Tech);
