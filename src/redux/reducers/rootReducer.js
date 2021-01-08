@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import techReducers from './TechReducers';
+import techReducer from './TechReducers';
 
 const rootReducer = combineReducers({
-    techReducers,
+    techReducer,
 });
 
 export default rootReducer;

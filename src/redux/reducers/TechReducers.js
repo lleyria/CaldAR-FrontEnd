@@ -1,46 +1,123 @@
-import techData from '../../data/Technicians.json';
-import { ADD_TECH, DEL_TECH, UPD_TECH, MODAL } from '../types/TechTypes';
+import {
+    SHOW_FORM,
+    GET_TECH_FETCHING,
+    GET_TECH_FULFILLED,
+    GET_TECH_REJECTED,
+    ADD_TECH_FETCHING,
+    ADD_TECH_FULFILLED,
+    ADD_TECH_REJECTED,
+    DEL_TECH_FETCHING,
+    DEL_TECH_FULFILLED,
+    DEL_TECH_REJECTED,
+    UPD_TECH_FETCHING,
+    UPD_TECH_FULFILLED,
+    UPD_TECH_REJECTED
+} from '../types/TechTypes';
 
 const initialState = {
-    techData,
-    isOpen: false,
-    techFind: {},
-    isEditing: false
+    technicians: [],
+    error: false,
+    formVisible: false,
+    initialFormState: null,
+    isLoading: false,
 }
 
-const techReducers = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_TECH:
+const techReducer = (state = initialState, action) => {
+    switch(action.type){
+        case GET_TECH_FETCHING:
             return {
                 ...state,
-                techData: [...state.techData, action.payload]
+                isLoading: true,
             };
-        case DEL_TECH:
+        case GET_TECH_FULFILLED:
             return {
                 ...state,
-                techData: [...state.filter((technician) => technician.id !== action.payload)]
+                isLoading: false,
+                technicians: action.payload,
             };
-        case UPD_TECH:
+        case GET_TECH_REJECTED:
             return {
                 ...state,
-                techFind: {},
-                isEditing: false,
-                techData: [...state.map((technician) => {
-                if (technician.id === action.payload.id) {
+                isLoading: false,
+                error: true,
+            };
+        case ADD_TECH_FETCHING:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case ADD_TECH_FULFILLED:
+            return {
+                ...state,
+                formVisible: true,
+                isLoading: false,
+                technicians: [...state.technicians, action.payload],
+            };
+        case ADD_TECH_REJECTED:
+            return {
+                ...state,
+                isLoading: false,
+                error: true,
+            };
+        case DEL_TECH_FETCHING:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case DEL_TECH_FULFILLED:
+            return {
+                ...state,
+                isLoading: false,
+                list: [
+                    ...state.list.filter(
+                    (technician) => technician._id !== action.payload
+                    ),
+                ],
+            };
+        case DEL_TECH_REJECTED:
+            return {
+                ...state,
+                isLoading: false,
+                error: true,
+            };
+        case UPD_TECH_FETCHING:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case UPD_TECH_FULFILLED: {
+            const techWithUpdElement = state.technicians.map((technician) => {
+                if(technician._id === action.payload._id) {
                     technician = action.payload;
                 }
                 return technician;
-            }), ]};
-        case MODAL:
+            });
             return {
                 ...state,
-                isOpen: !state.isOpen
-            }
-        // case getTech, payload -> techFind, isEditing: true.
-        default: {
-            return state;
+                formVisible: false,
+                isLoading: false,
+                technicians: techWithUpdElement,
+            };
         }
+        case UPD_TECH_REJECTED:
+            return {
+                ...state,
+                isLoading: false,
+                error: true,
+            };
+        case SHOW_FORM: {
+            let result = null;
+            if(action.payload) {
+                const filteredTech = state.technicians.filter(
+                    (technician) => technician._id === action.payload
+                );
+                result = filteredTech.length !== 0 ? filteredTech[0] : null;
+            }
+            return { ...state, formVisible: true, initialFormState: result };
+        }
+        default:
+            return state;
     }
-}
+};
 
-export default techReducers;
+export default techReducer;
