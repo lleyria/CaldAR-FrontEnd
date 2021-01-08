@@ -16,6 +16,7 @@ import {
 
 const URL = "https://app-caldar.herokuapp.com/companies";
 
+
 const getCompaniesFetching = () => ({
     type: GET_COMPANIES_FETCHING,
   });
@@ -112,12 +113,12 @@ const getCompaniesFetching = () => ({
   });
 
 
-  export const updateCompany = (payload) => (dispatch) => {
+  export const updateCompany = (company) => (dispatch) => {
     dispatch(updateCompanyFetching());
-    return fetch(`${URL}/?id=${payload.id}`, { method: "PUT" })
+    return fetch(`${URL}/?id=${company._id}`, { method: "PUT", body: JSON.stringify(company) })
       .then((data) => data.json())
       .then(() => {
-        dispatch(updateCompanyFulfilled(payload.id));
+        dispatch(updateCompanyFulfilled(company));
       })
       .catch(() => {
         dispatch(updateCompanyRejected());
