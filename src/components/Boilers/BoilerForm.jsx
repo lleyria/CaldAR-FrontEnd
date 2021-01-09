@@ -10,7 +10,7 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
     _id: Math.floor(Math.random() * 101),
     lot: "",
     companyName: "",
-    boilerType: "",
+    boilersTypeId: "",
     installationDate: "",
     fabricationDate: "",
     expirationDate: "",
@@ -44,7 +44,7 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
       _id: boilerToEdit._id,
       lot: boilerToEdit.lot,
       companyName: boilerToEdit.companyName,
-      boilerType: boilerToEdit.boilerType,
+      boilersTypeId: boilerToEdit.boilersTypeId,
       installationDate: boilerToEdit.installationDate,
       fabricationDate: boilerToEdit.fabricationDate,
       expirationDate: boilerToEdit.expirationDate,
@@ -84,9 +84,9 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
             <label>Boiler Type</label>
             <input
               type="text"
-              name="boilerType"
+              name="boilersTypeId"
               placeholder="Boiler Type"
-              value={boiler.boilerType}
+              value={boiler.boilersTypeId}
               onChange={handleChange}
             />
           </fieldset>
@@ -96,10 +96,7 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
               type="date"
               name="installationDate"
               placeholder="Installation Date"
-              value={boiler.installationDate.replace(
-                /(\d\d)\/(\d\d)\/(\d{4})/,
-                "$3-$1-$2"
-              )}
+              value={boiler.installationDate}
               onChange={handleChange}
             />
           </fieldset>
@@ -111,10 +108,7 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
               type="date"
               name="fabricationDate"
               placeholder="Fabrication Date"
-              value={boiler.fabricationDate.replace(
-                /(\d\d)\/(\d\d)\/(\d{4})/,
-                "$3-$1-$2"
-              )}
+              value={boiler.fabricationDate}
               onChange={handleChange}
             />
           </fieldset>
@@ -124,10 +118,7 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
               type="date"
               name="expirationDate"
               placeholder="Expiration Date"
-              value={boiler.expirationDate.replace(
-                /(\d\d)\/(\d\d)\/(\d{4})/,
-                "$3-$1-$2"
-              )}
+              value={boiler.expirationDate}
               onChange={handleChange}
             />
           </fieldset>
@@ -154,7 +145,6 @@ const mapDispatchToProps = (dispatch) => {
     dispatch
   );
 };
-
 
 const mapStateToProps = (state) => {
   return {

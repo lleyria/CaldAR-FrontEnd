@@ -10,7 +10,7 @@ const Boiler = ({ boiler, deleteBoiler, showForm }) => {
     <tr className="boilerRow">
       <td>{boiler.lot}</td>
       <td>{boiler.companyName}</td>
-      <td>{boiler.boilerType}</td>
+      <td>{boiler.boilersTypeId}</td>
       <td>{boiler.installationDate}</td>
       <td>{boiler.fabricationDate}</td>
       <td>{boiler.expirationDate}</td>

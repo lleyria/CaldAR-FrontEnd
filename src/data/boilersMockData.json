@@ -3,7 +3,7 @@
     "id": "5fe0b8f9fc13ae32b2000014",
     "lot": "116-C22",
     "companyName": "O'Connell, Hilll and Wintheiser",
-    "boilerType": "C",
+    "boilersTypeId": "C",
     "installationDate": "-",
     "fabricationDate": "09/20/2020",
     "expirationDate": "04/10/2035"
@@ -12,7 +12,7 @@
     "id": "5fe0b8f9fc13ae32b2000015",
     "lot": "123-D98",
     "companyName": "-",
-    "boilerType": "D",
+    "boilersTypeId": "D",
     "installationDate": "09/21/2020",
     "fabricationDate": "01/17/2019",
     "expirationDate": "05/10/2035"
@@ -21,7 +21,7 @@
     "id": "5fe0b8f9fc13ae32b2000016",
     "lot": "342-B87",
     "companyName": "Wunsch-Hyatt",
-    "boilerType": "B",
+    "boilersTypeId": "B",
     "installationDate": "05/06/2020",
     "fabricationDate": "11/24/2019",
     "expirationDate": "08/27/2043"
@@ -30,7 +30,7 @@
     "id": "5fe0b8f9fc13ae32b2000017",
     "lot": "765-A75",
     "companyName": "Davis, Parisian and Hilpert",
-    "boilerType": "A",
+    "boilersTypeId": "A",
     "installationDate": "01/02/2020",
     "fabricationDate": "05/10/2020",
     "expirationDate": "06/02/2030"
@@ -39,7 +39,7 @@
     "id": "5fe0b8f9fc13ae32b2000018",
     "lot": "112-D69",
     "companyName": "-",
-    "boilerType": "D",
+    "boilersTypeId": "D",
     "installationDate": "-",
     "fabricationDate": "09/26/2020",
     "expirationDate": "09/01/2056"
