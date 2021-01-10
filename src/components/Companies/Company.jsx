@@ -40,12 +40,6 @@ Company.propTypes = {
   showForm: PropTypes.func.isRequired,
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     deleteCompany: (id) => dispatch(deleteCompany(id)),
-//     showForm: (id) => dispatch(showForm(id)),
-//   };
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(

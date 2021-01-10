@@ -61,7 +61,7 @@ const getCompaniesFetching = () => ({
     dispatch(addCompanyFetching());
     return fetch(URL, {
       method: "POST",
-      headers: { "Content-Type": "aplication/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(company),
     })
       .then((data) => data.json())
