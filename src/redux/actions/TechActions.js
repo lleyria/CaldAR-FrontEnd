@@ -58,7 +58,7 @@ export const addTech = (technician) => (dispatch) => {
     dispatch(addTechFetching());
     return fetch(URL, {
         method: 'POST',
-        headers: { 'Content-type': 'aplication/json' },
+        headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(technician),
     })
         .then((data) => data.json())

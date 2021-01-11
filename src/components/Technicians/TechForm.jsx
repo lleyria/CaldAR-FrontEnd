@@ -38,7 +38,6 @@ const techForm = ({ addTech, updTech, initialState }) => {
         if (initialState) {
             updTech(technician);
         } else {
-            console.log(technician);
             addTech(technician);
         }
         event.preventDefault();
