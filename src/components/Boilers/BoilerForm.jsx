@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 
 const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
   const emptyBoiler = {
-    _id: Math.floor(Math.random() * 101),
+    // _id: Math.floor(Math.random() * 101),
     lot: "",
     companyName: "",
     boilersTypeId: "",
@@ -45,9 +45,11 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
       lot: boilerToEdit.lot,
       companyName: boilerToEdit.companyName,
       boilersTypeId: boilerToEdit.boilersTypeId,
-      installationDate: boilerToEdit.installationDate,
-      fabricationDate: boilerToEdit.fabricationDate,
-      expirationDate: boilerToEdit.expirationDate,
+      installationDate: boilerToEdit.installationDate
+        ? boilerToEdit.installationDate.split("T")[0]
+        : "",
+      fabricationDate: boilerToEdit.fabricationDate.split("T")[0],
+      expirationDate: boilerToEdit.expirationDate.split("T")[0],
     });
   };
 
@@ -131,7 +133,7 @@ const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
 
 // PropTypes
 BoilerForm.propTypes = {
-  initialState: PropTypes.object.isRequired,
+  initialState: PropTypes.object,
   addBoiler: PropTypes.func.isRequired,
   updateBoiler: PropTypes.func.isRequired,
 };

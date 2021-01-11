@@ -11,9 +11,9 @@ const Boiler = ({ boiler, deleteBoiler, showForm }) => {
       <td>{boiler.lot}</td>
       <td>{boiler.companyName}</td>
       <td>{boiler.boilersTypeId}</td>
-      <td>{boiler.installationDate}</td>
-      <td>{boiler.fabricationDate}</td>
-      <td>{boiler.expirationDate}</td>
+      <td>{boiler.installationDate ? boiler.installationDate.split("T")[0] : ""}</td>
+      <td>{boiler.fabricationDate ? boiler.fabricationDate.split("T")[0] : ""}</td>
+      <td>{boiler.expirationDate ? boiler.expirationDate.split("T")[0] : ""}</td>
       <td className="icons">
         <i
           className="fas fa-pen"

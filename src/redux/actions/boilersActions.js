@@ -58,7 +58,7 @@ export const addBoiler = (boiler) => (dispatch) => {
   dispatch(addBoilerFetching());
   return fetch(URL, {
     method: "POST",
-    headers: { "Content-Type": "aplication/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(boiler),
   })
     .then((data) => data.json())
@@ -110,7 +110,11 @@ const updateBoilerRejected = () => ({
 
 export const updateBoiler = (boiler) => (dispatch) => {
   dispatch(updateBoilerFetching());
-  return fetch(`${URL}/?id=${boiler._id}`, { method: "PUT", body: JSON.stringify(boiler) })
+  return fetch(`${URL}/?id=${boiler._id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(boiler),
+  })
     .then((data) => data.json())
     .then(() => {
       dispatch(updateBoilerFulfilled(boiler));
