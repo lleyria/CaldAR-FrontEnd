@@ -110,7 +110,11 @@ const updTechRejected = () => ({
 
 export const updTech = (technician) => (dispatch) => {
     dispatch(updTechFetching());
-    return fetch(`${URL}/?id=${technician._id}`, { method: 'PUT', body: JSON.stringify(technician) })
+    return fetch(`${URL}/?id=${technician._id}`, {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(technician)
+        })
         .then((data) => data.json())
         .then(() => {
             dispatch(updTechFulfilled(technician));
