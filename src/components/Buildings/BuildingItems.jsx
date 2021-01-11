@@ -16,7 +16,7 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
     setIsEditing(false);
   } 
   const {
-    id,
+    _id,
     buildingName,
     companyName,
     address,
@@ -102,15 +102,15 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
   ) : (
     <div className="box">
       <ul>
-        <li className="id-column">{id}</li>
+        <li className="id-column">{_id}</li>
         <li>{buildingName}</li>
         <li>{companyName}</li>
         <li>{address}</li>
         <li>{managerName}</li>
         <li>{phone}</li>
-        <li className="short-column">{boilersId}</li>
-        <li className="short-column">{boilersTypes}</li>
-        <button onClick={() => delBuilding(id)} className="del-btn">
+        <li className="id-column">{boilersId}</li>
+        <li className="id-column">{boilersTypes}</li>
+        <button onClick={() => delBuilding(_id)} className="del-btn">
           X
         </button>
         <button onClick={() => setIsEditing(true)} className="modify-btn">

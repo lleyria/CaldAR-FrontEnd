@@ -14,6 +14,7 @@ import {
 } from '../types/buildingTypes'
 
 const URL = "https://app-caldar.herokuapp.com/buildings"
+// const URL = "http://localhost:5000/buildings"
 
 
 export const getBuildingsFetching = () => {
@@ -38,7 +39,7 @@ export const getBuildingsRejected = (error) => {
 
 export const getBuildings = () => dispatch => {
     dispatch(getBuildingsFetching());
-    return fetch(URL, {mode:'no-cors'})
+    return fetch(URL)
       .then((data) => data.json())
       .then((json) => dispatch(getBuildingsFullfilled(json)))
       .catch((error) => dispatch(getBuildingsRejected(error)))
@@ -61,8 +62,13 @@ const addBuildingFetching = () => ({
   export const addBuilding = (build) => (dispatch) => {
     dispatch(addBuildingFetching());
     const body = JSON.stringify(build);
+    console.log('body', body);
     return fetch(`${URL}/`, {
       method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json"
+      },
       body: body,
     })
       .then((data) => data.json())

@@ -13,7 +13,8 @@ const AddBuilding = (props) => {
     managerName,
     phone,
     boilersId,
-    boilersTypes} = building;
+    boilerTypes
+   } = building;
 
   const onChange = (event) => {
     setBuilding({ ...building, [event.target.name]: event.target.value });
@@ -85,10 +86,10 @@ const AddBuilding = (props) => {
             />
             <input
                 type="text"
-                name="boilersTypes"
+                name="boilerTypes"
                 style={{flex: '10', padding: '5px'}}
                 placeholder="Boilers Types"
-                value={boilersTypes}
+                value={boilerTypes}
                 onChange={onChange}
             />
             <input
@@ -110,7 +111,7 @@ const initialFormState = {
     managerName: '',
     phone: '',
     boilersId: '',
-    boilersTypes: ''
+    boilerTypes: ''
 };
   // PropTypes
   AddBuilding.propTypes = {

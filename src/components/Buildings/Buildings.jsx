@@ -4,7 +4,7 @@ import Header from './Header';
 import AddBuilding from './AddBuilding';
 import PropTypes from "prop-types";
 import './Buildings.css';
-import { connect, useStore } from 'react-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getBuildings,
           addBuilding,
@@ -12,7 +12,6 @@ import { getBuildings,
           updateBuilding } from '../../redux/actions/buildingsActions'
 
 const Buildings = (props) => {
-    const store = useStore();
     const buildings = props.list;
     useEffect(() => {
       props.getBuildings();
