@@ -23,7 +23,7 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
     managerName,
     phone,
     boilersId,
-    boilersTypes,
+    boilerTypes,
   } = building;
 
   const onChange = (e) => {
@@ -109,7 +109,7 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
         <li>{managerName}</li>
         <li>{phone}</li>
         <li className="id-column">{boilersId}</li>
-        <li className="id-column">{boilersTypes}</li>
+        <li className="id-column">{boilerTypes}</li>
         <button onClick={() => delBuilding(_id)} className="del-btn">
           X
         </button>

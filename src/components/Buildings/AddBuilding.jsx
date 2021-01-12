@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 const AddBuilding = (props) => {
   const [building, setBuilding] = useState(initialFormState);
   const {
-    id,
     buildingName,
     companyName,
     address,
@@ -28,14 +27,6 @@ const AddBuilding = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-        <input
-                type="text"
-                name="id"
-                style={{flex: '10', padding: '5px'}}
-                placeholder="id"
-                value={id}
-                onChange={onChange}
-            />
             <input
                 type="text"
                 name="buildingName"
@@ -104,7 +95,6 @@ const AddBuilding = (props) => {
 };
 
 const initialFormState = {
-    id: '',
     buildingName: '',
     companyName: '',
     address: '',

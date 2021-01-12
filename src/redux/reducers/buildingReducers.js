@@ -73,11 +73,9 @@ import {
         return {
           ...state,
           isLoading: false,
-          list: [
-            ...state.list.filter(
+          list: state.list.filter(
               (building) => building._id !== action.payload
             ),
-          ],
         };
       }
       case DELETE_BUILDING_REJECTED: {
@@ -98,14 +96,12 @@ import {
         return {
           ...state,
           isLoading: false,
-          list: [
-            ...state.list.map((building) => {
-              if (building._id === action.payload.id) {
+          list: state.list.map((building) => {
+              if (building._id === action.payload._id) {
                 building = action.payload;
               }
               return building;
             }),
-          ],
         };
       }
       case UPDATE_BUILDING_REJECTED: {

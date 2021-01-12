@@ -14,7 +14,6 @@ import {
 } from '../types/buildingTypes'
 
 const URL = "https://app-caldar.herokuapp.com/buildings"
-// const URL = "http://localhost:5000/buildings"
 
 
 export const getBuildingsFetching = () => {
@@ -92,13 +91,13 @@ const addBuildingFetching = () => ({
     payload: error
   });
   
-  export const delBuilding = (id) => (dispatch) => {
+  export const delBuilding = (_id) => (dispatch) => {
     dispatch(deleteBuildingFetching());
     return (
-      fetch(`${URL}/${id}`, { method: "DELETE" })
+      fetch(`${URL}/?id=${_id}`, { method: "DELETE" })
         .then((data) => data.json())
         .then(() => {
-          dispatch(deleteBuildingFullfilled(id));
+          dispatch(deleteBuildingFullfilled(_id));
         })
         .catch(() => {
           dispatch(deleteBuildingRejected());
@@ -122,13 +121,16 @@ const addBuildingFetching = () => ({
   
   export const updateBuilding = (build) => (dispatch) => {
     dispatch(updateBuildingFetching());
-    return fetch(`${URL}/${build.id}`, {
+    return fetch(`${URL}/?id=${build._id}`, {
       method: "PUT",
-      body: JSON.stringify(build)
+      body: JSON.stringify(build),
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json"
+      }
     })
-      .then((data) => data.json())
-      .then((json) => {
-          dispatch(updateBuildingFullfilled(json));
+      .then(() => {
+          dispatch(updateBuildingFullfilled(build));
       })
       .catch((error) => dispatch(updateBuildingRejected(error)));
   };
