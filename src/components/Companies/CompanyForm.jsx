@@ -4,6 +4,7 @@ import "./CompanyForm.css";
 import { addCompany, updateCompany } from "../../redux/actions/companiesActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+// import { Form, Field } from 'react-final-form' 
 
 const CompanyForm = ({ addCompany, updateCompany, initialState }) => {
     const emptyCompany = {
