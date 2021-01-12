@@ -149,7 +149,7 @@ const techForm = ({ addTech, updTech, initialState }) => {
 // PropTypes
 
 techForm.propTypes = {
-    initialState: PropTypes.object.isRequired,
+    initialState: PropTypes.object,
     addTech: PropTypes.func.isRequired,
     updTech: PropTypes.func.isRequired,
 };

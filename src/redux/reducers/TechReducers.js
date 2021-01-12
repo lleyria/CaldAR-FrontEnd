@@ -68,11 +68,9 @@ const techReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                list: [
-                    ...state.list.filter(
+                technicians: state.technicians.filter(
                     (technician) => technician._id !== action.payload
-                    ),
-                ],
+                ),
             };
         case DEL_TECH_REJECTED:
             return {

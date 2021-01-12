@@ -85,7 +85,9 @@ const delTechRejected = () => ({
 
 export const delTech = (id) => (dispatch) => {
     dispatch(delTechFetching());
-    return fetch(`${URL}/?id=${id}`, { method: 'DELETE' })
+    return fetch(`${URL}/?id=${id}`, {
+        method: 'DELETE'
+        })
         .then((data) => data.json())
         .then(() => {
             dispatch(delTechFulfilled(id));

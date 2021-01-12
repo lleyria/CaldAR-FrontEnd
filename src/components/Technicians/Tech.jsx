@@ -16,8 +16,8 @@ const Tech = ({ technician, delTech, showForm }) => {
             <td>{technician.hourRate}</td>
             <td>{technician.monthlyCapacity}</td>
             <td>
-                <i className = 'fas fa-pen' onClick = {() => { showForm(technician._id) }} />
-                <i className = 'fas fa-trash' onClick = {() => { delTech(technician._id) }} />
+                <i className = 'fas fa-pen' onClick = {() => { showForm(technician._id); }} />
+                <i className = 'fas fa-trash' onClick = {() => { delTech(technician._id); }} />
             </td>
         </tr>
     );
@@ -33,6 +33,7 @@ Tech.propTypes = {
 const mapDispatchToProps = (dispatch) => {return bindActionCreators({
     delTech: delTech,
     showForm: showForm,
-}, dispatch)};
+    }, dispatch);
+};
 
 export default connect(null, mapDispatchToProps)(Tech);
