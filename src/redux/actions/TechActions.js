@@ -88,7 +88,6 @@ export const delTech = (id) => (dispatch) => {
     return fetch(`${URL}/?id=${id}`, {
         method: 'DELETE'
         })
-        .then((data) => data.json())
         .then(() => {
             dispatch(delTechFulfilled(id));
         })

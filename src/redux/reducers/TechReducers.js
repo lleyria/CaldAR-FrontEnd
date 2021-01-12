@@ -45,13 +45,14 @@ const techReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
+                formVisible: true,
             };
         case ADD_TECH_FULFILLED:
             return {
                 ...state,
-                formVisible: true,
                 isLoading: false,
                 technicians: [...state.technicians, action.payload],
+                formVisible: false,
             };
         case ADD_TECH_REJECTED:
             return {
