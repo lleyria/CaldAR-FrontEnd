@@ -1,0 +1,38 @@
+[
+  {
+    "id": "5ff61695fc13ae0a2f00000a",
+    "description": "A",
+    "type": "gas",
+    "maxCapacity": "2000",
+    "temperatureRange": "100-160",
+    "weight": "300",
+    "monthlyMaintenanceTime": "6-8 hours"
+  },
+  {
+    "id": "5ff61695fc13ae0a2f00000b",
+    "description": "B",
+    "type": "gasoil",
+    "maxCapacity": "2500",
+    "temperatureRange": "150-300",
+    "weight": "250",
+    "monthlyMaintenanceTime": "7-10 hours"
+  },
+  {
+    "id": "5ff61695fc13ae0a2f00000c",
+    "description": "C",
+    "type": "solar",
+    "maxCapacity": "3000",
+    "temperatureRange": "180-270",
+    "weight": "200",
+    "monthlyMaintenanceTime": "6-7.5 hours"
+  },
+  {
+    "id": "5ff61695fc13ae0a2f00000d",
+    "description": "D",
+    "type": "biomass",
+    "maxCapacity": "3000",
+    "temperatureRange": "200-400",
+    "weight": "350",
+    "monthlyMaintenanceTime": "8-9 hours"
+  }
+]

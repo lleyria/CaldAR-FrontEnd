@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tech from './Tech';
 import './TechTable.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getTechs } from '../../redux/actions/TechActions';
 
-const TechTable = (props) => {
+const TechTable = ({ technicians, getTechs }) => {
+    useEffect(() => {
+        getTechs();
+    }, [getTechs]);
+
     return(
         <div>
             <table>
@@ -20,11 +27,9 @@ const TechTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.technicians.map((technician) =>(
+                    {technicians.map((technician) =>(
                         <Tech key = {technician.id}
                             technician = {technician}
-                            onDelete = {props.onDeleteItem}
-                            onUpdate = {props.onUpdateItem}
                         />
                     ))}
                 </tbody>
@@ -36,8 +41,19 @@ const TechTable = (props) => {
 // PropTypes
 TechTable.propTypes = {
     technicians: PropTypes.array.isRequired,
-    onDeleteItem: PropTypes.func.isRequired,
-    onUpdateItem: PropTypes.func.isRequired,
+    getTechs: PropTypes.func.isRequired,
 };
 
-export default TechTable;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        getTechs: getTechs,
+    }, dispatch);
+};
+
+const mapStateToProps = (state) => {
+    return {
+        technicians: state.techReducer.technicians,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TechTable);

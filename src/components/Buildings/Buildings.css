@@ -51,13 +51,16 @@
   }
   li{
     list-style: none;
-    width: 17%;
+    width: 9%;
     padding: 10px 30px;
   }
-  .short-column{
-    width: 6%;
-  }
   .id-column{
+    width: 3%;
+    height: 50px;
+    width: 50px;  
+    overflow-y: hidden;
+  }
+  .id-column-header{
     width: 3%;
   }
   h1{

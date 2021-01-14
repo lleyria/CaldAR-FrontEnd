@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { delBuilding, updateBuilding  } from "../../redux/actions/buildingsActions";
+import { connect } from 'react-redux';
 
 const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,18 +16,18 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
     setIsEditing(false);
   } 
   const {
-    id,
+    _id,
     buildingName,
     companyName,
     address,
     managerName,
     phone,
     boilersId,
-    boilersTypes,
+    boilerTypes,
   } = building;
 
   const onChange = (e) => {
-    setBuildingToEdit({...building, [e.target.name]:e.target.value})
+    setBuildingToEdit({...buildingToEdit, [e.target.name]:e.target.value})
   }
   return isEditing ? (
     <>
@@ -100,15 +102,15 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
   ) : (
     <div className="box">
       <ul>
-        <li className="id-column">{id}</li>
+        <li className="id-column">{_id}</li>
         <li>{buildingName}</li>
         <li>{companyName}</li>
         <li>{address}</li>
         <li>{managerName}</li>
         <li>{phone}</li>
-        <li className="short-column">{boilersId}</li>
-        <li className="short-column">{boilersTypes}</li>
-        <button onClick={() => delBuilding(id)} className="del-btn">
+        <li className="id-column">{boilersId}</li>
+        <li className="id-column">{boilerTypes}</li>
+        <button onClick={() => delBuilding(_id)} className="del-btn">
           X
         </button>
         <button onClick={() => setIsEditing(true)} className="modify-btn">
@@ -127,4 +129,19 @@ BuildingItems.propTypes = {
   updateBuilding: PropTypes.func,
 };
 
-export default BuildingItems;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delBuilding: (id) => dispatch(delBuilding(id)),
+    updateBuilding: (build) => dispatch(updateBuilding(build)),
+
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    buildings: state.buildings,
+  };
+};
+
+export default connect (mapStateToProps, mapDispatchToProps)(BuildingItems);
+
