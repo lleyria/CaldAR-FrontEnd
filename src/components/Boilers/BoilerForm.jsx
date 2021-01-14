@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./BoilerForm.css";
+import { addBoiler, updateBoiler } from "../../redux/actions/boilersActions";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-const BoilerForm = (props) => {
+const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
   const emptyBoiler = {
-    id: Math.floor(Math.random() * 101),
+    // _id: Math.floor(Math.random() * 101),
     lot: "",
     companyName: "",
-    boilerType: "",
+    boilersTypeId: "",
     installationDate: "",
     fabricationDate: "",
     expirationDate: "",
@@ -16,31 +19,37 @@ const BoilerForm = (props) => {
   const [boiler, setBoiler] = useState(emptyBoiler);
 
   useEffect(() => {
-    if (props.initialState) {
-      handleEdit(props.initialState);
+    if (initialState) {
+      handleEdit(initialState);
     } else {
       setBoiler(emptyBoiler);
     }
-  }, [props.initialState]);
+  }, [initialState]);
 
   const handleChange = (event) => {
     setBoiler({ ...boiler, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
-    props.onSubmit(boiler);
+    if (initialState) {
+      updateBoiler(boiler);
+    } else {
+      addBoiler(boiler);
+    }
     event.preventDefault();
   };
 
   const handleEdit = (boilerToEdit) => {
     setBoiler({
-      id: boilerToEdit.id,
+      _id: boilerToEdit._id,
       lot: boilerToEdit.lot,
       companyName: boilerToEdit.companyName,
-      boilerType: boilerToEdit.boilerType,
-      installationDate: boilerToEdit.installationDate,
-      fabricationDate: boilerToEdit.fabricationDate,
-      expirationDate: boilerToEdit.expirationDate,
+      boilersTypeId: boilerToEdit.boilersTypeId,
+      installationDate: boilerToEdit.installationDate
+        ? boilerToEdit.installationDate.split("T")[0]
+        : "",
+      fabricationDate: boilerToEdit.fabricationDate.split("T")[0],
+      expirationDate: boilerToEdit.expirationDate.split("T")[0],
     });
   };
 
@@ -48,7 +57,7 @@ const BoilerForm = (props) => {
     <div className="form-container">
       <form onSubmit={handleSubmit}>
         <div className="form-title">
-          <p>{props.initialState ? "Edit boiler" : "Add a new boiler"}</p>
+          <p>{initialState ? "Edit boiler" : "Add a new boiler"}</p>
         </div>
         <div className="row">
           <fieldset className="field-container">
@@ -77,9 +86,9 @@ const BoilerForm = (props) => {
             <label>Boiler Type</label>
             <input
               type="text"
-              name="boilerType"
+              name="boilersTypeId"
               placeholder="Boiler Type"
-              value={boiler.boilerType}
+              value={boiler.boilersTypeId}
               onChange={handleChange}
             />
           </fieldset>
@@ -89,10 +98,7 @@ const BoilerForm = (props) => {
               type="date"
               name="installationDate"
               placeholder="Installation Date"
-              value={boiler.installationDate.replace(
-                /(\d\d)\/(\d\d)\/(\d{4})/,
-                "$3-$1-$2"
-              )}
+              value={boiler.installationDate}
               onChange={handleChange}
             />
           </fieldset>
@@ -104,10 +110,7 @@ const BoilerForm = (props) => {
               type="date"
               name="fabricationDate"
               placeholder="Fabrication Date"
-              value={boiler.fabricationDate.replace(
-                /(\d\d)\/(\d\d)\/(\d{4})/,
-                "$3-$1-$2"
-              )}
+              value={boiler.fabricationDate}
               onChange={handleChange}
             />
           </fieldset>
@@ -117,10 +120,7 @@ const BoilerForm = (props) => {
               type="date"
               name="expirationDate"
               placeholder="Expiration Date"
-              value={boiler.expirationDate.replace(
-                /(\d\d)\/(\d\d)\/(\d{4})/,
-                "$3-$1-$2"
-              )}
+              value={boiler.expirationDate}
               onChange={handleChange}
             />
           </fieldset>
@@ -133,8 +133,25 @@ const BoilerForm = (props) => {
 
 // PropTypes
 BoilerForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
   initialState: PropTypes.object,
+  addBoiler: PropTypes.func.isRequired,
+  updateBoiler: PropTypes.func.isRequired,
 };
 
-export default BoilerForm;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      addBoiler: addBoiler,
+      updateBoiler: updateBoiler,
+    },
+    dispatch
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    initialState: state.boilersReducer.initialFormState,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoilerForm);
