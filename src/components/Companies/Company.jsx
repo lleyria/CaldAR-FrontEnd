@@ -1,39 +1,54 @@
-import React from 'react';
+import React from "react";
 //best practices
 import PropTypes from "prop-types";
 import "./Company.css"
-//As a function to implement hooks
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Company = (props) => {
-    const handleUpdateItem = () => {
-        props.onUpdate(props.company.id);
-      };
-    
-      const handleDeleteItem = () => {
-        props.onDelete(props.company.id);
-      };
-    return (
-        <tr>
-            <td>{props.company.name}</td>
-            <td>{props.company.companyName}</td>
-            <td>{props.company.address}</td>
-            <td>{props.company.managerName}</td>
-            <td>{props.company.phone}</td>
-            <td>{props.company.boilerType}</td>
-            <td>
-                <i className="fas fa-pen"  onClick={handleUpdateItem}/>
-                <i className="fas fa-trash" onClick={handleDeleteItem}/>
-            </td>
-        </tr>
-    );
-};
+import { connect } from "react-redux";
+import { deleteCompany, showForm } from "../../redux/actions/companiesActions";
+import { bindActionCreators } from "redux";
 
+
+const Company = ({ company, deleteCompany, showForm }) => {
+  return (
+    <tr className="companyRow">
+      <td>{company.companyName}</td>
+      <td>{company.address}</td>
+      <td>{company.managerName}</td>
+      <td>{company.phone}</td>
+      <td>{company.boilerType}</td>      
+      <td className="icons">
+        <i
+          className="fas fa-pen"
+          onClick={() => {
+            showForm(company._id);
+          }}
+        />
+        <i
+          className="fas fa-trash"
+          onClick={() => {
+            deleteCompany(company._id);
+          }}
+        />
+      </td>
+    </tr>
+  );
+};
 
 // PropTypes
 Company.propTypes = {
-    company: PropTypes.object.isRequired,
-    onUpdate: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired
-  };
+  company: PropTypes.object.isRequired,
+  deleteCompany: PropTypes.func.isRequired,
+  showForm: PropTypes.func.isRequired,
+};
 
-export default Company;
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      deleteCompany: deleteCompany,
+      showForm: showForm,
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(Company);
