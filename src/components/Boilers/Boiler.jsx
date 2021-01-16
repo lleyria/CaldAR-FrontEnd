@@ -1,27 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./Boiler.css";
+import { connect } from "react-redux";
+import { deleteBoiler, showForm } from "../../redux/actions/boilersActions";
+import { bindActionCreators } from "redux";
 
-const Boiler = (props) => {
-  const handleUpdateItem = () => {
-    props.onUpdate(props.boiler.id);
-  };
-
-  const handleDeleteItem = () => {
-    props.onDelete(props.boiler.id);
-  };
-
+const Boiler = ({ boiler, deleteBoiler, showForm }) => {
   return (
     <tr className="boilerRow">
-      <td>{props.boiler.lot}</td>
-      <td>{props.boiler.companyName}</td>
-      <td>{props.boiler.boilerType}</td>
-      <td>{props.boiler.installationDate}</td>
-      <td>{props.boiler.fabricationDate}</td>
-      <td>{props.boiler.expirationDate}</td>
-      <td clasName="icons">
-        <i className="fas fa-pen" onClick={handleUpdateItem} />
-        <i className="fas fa-trash" onClick={handleDeleteItem} />
+      <td>{boiler.lot}</td>
+      <td>{boiler.companyName}</td>
+      <td>{boiler.boilersTypeId}</td>
+      <td>{boiler.installationDate ? boiler.installationDate.split("T")[0] : ""}</td>
+      <td>{boiler.fabricationDate ? boiler.fabricationDate.split("T")[0] : ""}</td>
+      <td>{boiler.expirationDate ? boiler.expirationDate.split("T")[0] : ""}</td>
+      <td className="icons">
+        <i
+          className="fas fa-pen"
+          onClick={() => {
+            showForm(boiler._id);
+          }}
+        />
+        <i
+          className="fas fa-trash"
+          onClick={() => {
+            deleteBoiler(boiler._id);
+          }}
+        />
       </td>
     </tr>
   );
@@ -30,8 +35,25 @@ const Boiler = (props) => {
 // PropTypes
 Boiler.propTypes = {
   boiler: PropTypes.object.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  deleteBoiler: PropTypes.func.isRequired,
+  showForm: PropTypes.func.isRequired,
 };
 
-export default Boiler;
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     delBoiler: (id) => dispatch(delBoiler(id)),
+//     showForm: (id) => dispatch(showForm(id)),
+//   };
+// };
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      deleteBoiler: deleteBoiler,
+      showForm: showForm,
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(Boiler);

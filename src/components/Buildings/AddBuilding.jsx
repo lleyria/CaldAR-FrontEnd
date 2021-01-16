@@ -1,38 +1,32 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { addBuilding } from "../../redux/actions/buildingsActions"
+import { connect } from 'react-redux';
 
 const AddBuilding = (props) => {
   const [building, setBuilding] = useState(initialFormState);
   const {
-    id,
     buildingName,
     companyName,
     address,
     managerName,
     phone,
     boilersId,
-    boilersTypes} = building;
+    boilerTypes
+   } = building;
 
   const onChange = (event) => {
     setBuilding({ ...building, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
-    props.onSubmit(building);
+    props.addBuilding(building);
     event.preventDefault();
     setBuilding(initialFormState)
   };
 
   return (
     <form onSubmit={handleSubmit}>
-        <input
-                type="text"
-                name="id"
-                style={{flex: '10', padding: '5px'}}
-                placeholder="id"
-                value={id}
-                onChange={onChange}
-            />
             <input
                 type="text"
                 name="buildingName"
@@ -83,10 +77,10 @@ const AddBuilding = (props) => {
             />
             <input
                 type="text"
-                name="boilersTypes"
+                name="boilerTypes"
                 style={{flex: '10', padding: '5px'}}
                 placeholder="Boilers Types"
-                value={boilersTypes}
+                value={boilerTypes}
                 onChange={onChange}
             />
             <input
@@ -101,18 +95,29 @@ const AddBuilding = (props) => {
 };
 
 const initialFormState = {
-    id: '',
     buildingName: '',
     companyName: '',
     address: '',
     managerName: '',
     phone: '',
     boilersId: '',
-    boilersTypes: ''
+    boilerTypes: ''
 };
   // PropTypes
   AddBuilding.propTypes = {
-    onSubmit: PropTypes.func,
+    addBuilding: PropTypes.func,
   };
 
-export default AddBuilding;
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      addBuilding: (build) => dispatch(addBuilding(build)),
+    };
+  };
+  
+  const mapStateToProps = (state) => {
+    return {
+      buildings: state.buildings,
+    };
+  };
+  
+  export default connect (mapStateToProps, mapDispatchToProps)(AddBuilding);

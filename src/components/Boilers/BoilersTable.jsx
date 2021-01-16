@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Boiler from "./Boiler";
 import "./BoilersTable.css";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { getBoilers } from "../../redux/actions/boilersActions";
 
-const BoilersTable = (props) => {
+const BoilersTable = ({ boilers, getBoilers }) => {
+  useEffect(() => {
+    getBoilers();
+  }, [getBoilers]);
+
   return (
     <div>
       <table>
@@ -19,8 +26,8 @@ const BoilersTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.boilers.map((boiler) => (
-            <Boiler key={boiler.id} boiler={boiler} onDelete={props.onDeleteItem} onUpdate={props.onUpdateItem}/>
+          {boilers.map((boiler) => (
+            <Boiler key={boiler.id} boiler={boiler} />
           ))}
         </tbody>
       </table>
@@ -28,11 +35,24 @@ const BoilersTable = (props) => {
   );
 };
 
-// PropTypes
 BoilersTable.propTypes = {
   boilers: PropTypes.array.isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
-  onUpdateItem: PropTypes.func.isRequired,
+  getBoilers: PropTypes.func.isRequired,
 };
 
-export default BoilersTable;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getBoilers: getBoilers,
+    },
+    dispatch
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    boilers: state.boilersReducer.boilers,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoilersTable);
