@@ -7,6 +7,7 @@ import {
     } from '../../redux/actions/TechActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Form, Field } from 'react-final-form';
 
 const techForm = ({ addTech, updTech, initialState }) => {
     const emptyTechnician = {
@@ -40,7 +41,7 @@ const techForm = ({ addTech, updTech, initialState }) => {
         } else {
             addTech(technician);
         }
-        event.preventDefault();
+        //event.preventDefault();
     };
 
     const handleEdit = (techToEdit) => {
@@ -57,92 +58,83 @@ const techForm = ({ addTech, updTech, initialState }) => {
     };
 
     return(
-        <div className = 'form-container'>
-            <form onSubmit = {handleSubmit}>
-                <div className = 'form-title'>
-                    <p>{initialState ? 'Edit Technician' : 'Add a new technician'}</p>
+        <Form
+            onSubmit = {handleSubmit}
+            render = {({ handleSubmit }) => (
+                <div className = 'form-container'>
+                    <form onSubmit = {handleSubmit}>
+                        <div className = 'form-title'>
+                            <p>{initialState ? 'Edit Technician' : 'Add a new technician'}</p>
+                        </div>
+                        <div className = 'row'>
+                            <label>First Name</label>
+                            <Field
+                                className = 'field-container'
+                                name = 'firstName'
+                                component = 'input'
+                                type = 'text'
+                                placeholder = 'First Name'
+                            />
+                            <label>Last Name</label>
+                            <Field
+                                className = 'field-container'
+                                name = 'lastName'
+                                component = 'input'
+                                type = 'text'
+                                placeholder = 'Last Name'
+                            />
+                        </div>
+                        <div className = 'row'>
+                            <label>Email</label>
+                            <Field
+                                className = 'field-container'
+                                name = 'email'
+                                component = 'input'
+                                type = 'text'
+                                placeholder = 'email'
+                            />
+                            <label>Boilers Type</label>
+                            <Field
+                                className = 'field-container'
+                                name = 'boilersTypeId'
+                                component = 'input'
+                                type = 'text'
+                                placeholder = 'Boilers Type'
+                            />
+                        </div>
+                        <div className = 'row'>
+                            <label>Professional Level</label>
+                            <Field
+                                className = 'field-container'
+                                name = 'professionalLevel'
+                                component = 'input'
+                                type = 'text'
+                                placeholder = 'Professional Level'
+                            />
+                            <label>Hour Rate</label>
+                            <Field
+                                className = 'field-container'
+                                name = 'hourRate'
+                                component = 'input'
+                                type = 'text'
+                                placeholder = 'Hour Rate'
+                            />
+                        </div>
+                        <div className = 'row'>
+                            <label>Monthly Capacity</label>
+                            <Field
+                                className = 'field-container'
+                                name = 'monthlyCapacity'
+                                component = 'input'
+                                type = 'text'
+                                placeholder = 'Monthly Capacity'
+                            />
+                        </div>
+                        <button type='submit'>Confirm</button>
+                    </form>
                 </div>
-                <div className="row">
-                    <fieldset className="field-container">
-                        <label>First Name</label>
-                        <input
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        value={technician.firstName}
-                        onChange={handleChange}
-                        />
-                    </fieldset>
-                    <fieldset className="field-container">
-                        <label>Last Name</label>
-                        <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        value={technician.lastName}
-                        onChange={handleChange}
-                        />
-                    </fieldset>
-                </div>
-                <div className="row">
-                    <fieldset className="field-container">
-                        <label>Email</label>
-                        <input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={technician.email}
-                        onChange={handleChange}
-                        />
-                    </fieldset>
-                    <fieldset className="field-container">
-                        <label>Boiler Types</label>
-                        <input
-                        type="text"
-                        name="boilersTypeId"
-                        placeholder="Boilers Type"
-                        value={technician.boilersTypeId}
-                        onChange={handleChange}
-                        />
-                    </fieldset>
-                </div>
-                <div className="row">
-                    <fieldset className="field-container">
-                        <label>Professional Level</label>
-                        <input
-                        type="text"
-                        name="professionalLevel"
-                        placeholder="Professional Level"
-                        value={technician.professionalLevel}
-                        onChange={handleChange}
-                        />
-                    </fieldset>
-                    <fieldset className="field-container">
-                        <label>Hour Rate</label>
-                        <input
-                        type="text"
-                        name="hourRate"
-                        placeholder="Hour Rate"
-                        value={technician.hourRate}
-                        onChange={handleChange}
-                        />
-                    </fieldset>
-                </div>
-                <div>
-                    <fieldset className="field-container">
-                        <label>Monthly Capacity</label>
-                        <input
-                        type="text"
-                        name="monthlyCapacity"
-                        placeholder="Monthly Capacity"
-                        value={technician.monthlyCapacity}
-                        onChange={handleChange}
-                        />
-                    </fieldset>
-                </div>
-                <button type="submit">Confirm</button>
-            </form>
-        </div>
+            )}
+        />
     );
 };
 
