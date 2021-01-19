@@ -32,16 +32,15 @@ const techForm = ({ addTech, updTech, initialState }) => {
     }, [initialState]);
 
     const handleChange = (event) => {
-        setTechnician({ ...technician, [event.target.name]: event.target.value });
+        setTechnician({ ...event, [event.target.name]: event.target.value });
     };
 
     const handleSubmit = (event) => {
         if (initialState) {
-            updTech(technician);
+            updTech(event);
         } else {
-            addTech(technician);
+            addTech(event);
         }
-        //event.preventDefault();
     };
 
     const handleEdit = (techToEdit) => {
@@ -62,73 +61,94 @@ const techForm = ({ addTech, updTech, initialState }) => {
             onSubmit = {handleSubmit}
             render = {({ handleSubmit }) => (
                 <div className = 'form-container'>
-                    <form onSubmit = {handleSubmit}>
+                    <form className = 'technician-form' onSubmit = { handleSubmit }>
                         <div className = 'form-title'>
                             <p>{initialState ? 'Edit Technician' : 'Add a new technician'}</p>
                         </div>
                         <div className = 'row'>
-                            <label>First Name</label>
-                            <Field
-                                className = 'field-container'
-                                name = 'firstName'
-                                component = 'input'
-                                type = 'text'
-                                placeholder = 'First Name'
-                            />
-                            <label>Last Name</label>
-                            <Field
-                                className = 'field-container'
-                                name = 'lastName'
-                                component = 'input'
-                                type = 'text'
-                                placeholder = 'Last Name'
-                            />
+                            <div>
+                                <label>First Name</label>
+                                <Field
+                                    className = 'field-container'
+                                    name = 'firstName'
+                                    component = 'input'
+                                    type = 'text'
+                                    placeholder = 'First Name'
+                                    value = {technician.firstName}
+                                />
+                            </div>
+                            <div>
+                                <label>Last Name</label>
+                                <Field
+                                    className = 'field-container'
+                                    name = 'lastName'
+                                    component = 'input'
+                                    type = 'text'
+                                    placeholder = 'Last Name'
+                                    value = {technician.lastName}
+                                />
+                            </div>
                         </div>
                         <div className = 'row'>
-                            <label>Email</label>
-                            <Field
-                                className = 'field-container'
-                                name = 'email'
-                                component = 'input'
-                                type = 'text'
-                                placeholder = 'email'
-                            />
-                            <label>Boilers Type</label>
-                            <Field
-                                className = 'field-container'
-                                name = 'boilersTypeId'
-                                component = 'input'
-                                type = 'text'
-                                placeholder = 'Boilers Type'
-                            />
+                            <div>
+                                <label>Email</label>
+                                <Field
+                                    className = 'field-container'
+                                    name = 'email'
+                                    component = 'input'
+                                    type = 'text'
+                                    placeholder = 'email'
+                                    value = {technician.email}
+                                />
+                            </div>
+                            <div>
+                                <label>Boilers Type</label>
+                                <Field
+                                    className = 'field-container'
+                                    name = 'boilersTypeId'
+                                    component = 'input'
+                                    type = 'text'
+                                    placeholder = 'Boilers Type'
+                                    value = {technician.boilersTypeId}
+                                />
+                            </div>
                         </div>
                         <div className = 'row'>
-                            <label>Professional Level</label>
-                            <Field
-                                className = 'field-container'
-                                name = 'professionalLevel'
-                                component = 'input'
-                                type = 'text'
-                                placeholder = 'Professional Level'
-                            />
-                            <label>Hour Rate</label>
-                            <Field
-                                className = 'field-container'
-                                name = 'hourRate'
-                                component = 'input'
-                                type = 'text'
-                                placeholder = 'Hour Rate'
-                            />
+                            <div>
+                                <label>Professional Level</label>
+                                <Field
+                                    className = 'field-container'
+                                    name = 'professionalLevel'
+                                    component = 'input'
+                                    type = 'text'
+                                    placeholder = 'Professional Level'
+                                    value = {technician.professionalLevel}
+                                />
+                            </div>
+                            <div>
+                                <label>Hour Rate</label>
+                                <Field
+                                    className = 'field-container'
+                                    name = 'hourRate'
+                                    component = 'input'
+                                    type = 'text'
+                                    placeholder = 'Hour Rate'
+                                    value = {technician.hourRate}
+                                />
+                            </div>
                         </div>
                         <div className = 'row'>
-                            <label>Monthly Capacity</label>
-                            <Field
-                                className = 'field-container'
-                                name = 'monthlyCapacity'
-                                component = 'input'
-                                type = 'text'
-                                placeholder = 'Monthly Capacity'
-                            />
+                            <div>
+                                <label>Monthly Capacity</label>
+                                <Field
+                                    className = 'field-container'
+                                    name = 'monthlyCapacity'
+                                    component = 'input'
+                                    type = 'text'
+                                    placeholder = 'Monthly Capacity'
+                                    value = {technician.monthlyCapacity}
+                                />
+                            </div>
                         </div>
                         <button type='submit'>Confirm</button>
                     </form>

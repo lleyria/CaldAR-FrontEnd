@@ -10,8 +10,9 @@ form {
     flex-wrap: wrap;
 }
 
-.row Field {
+.row div {
     display: flex;
+    flex-direction: column;
     flex-basis: 35%;
     flex-grow: 1;
     margin: 0 5px;
@@ -19,10 +20,10 @@ form {
     border: 0;
 }
 
-.field-container {
+.technician-form .field-container {
     display: flex;
     flex-direction: column;
-    margin: 0 15px;
+    margin: 0;
 }
 
 .field-container label {
