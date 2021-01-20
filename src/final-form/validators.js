@@ -25,10 +25,5 @@ export const boilerTypeValidator = (value) =>
     ? undefined
     : "A boiler type included is not available. Currently boilers types available are: A, B, C and D.";
 
-export const boilerTypeValidator = (value) =>
-    /^[0-9]*$/.test(value)
-    ? undefined
-    : "Invalid Email";
-
 export const composeValidators = (...validators) => (value) =>
   validators.reduce((error, validator) => error || validator(value), undefined);
