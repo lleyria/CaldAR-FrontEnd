@@ -6,7 +6,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import style from "./modal.module.css";
+
 
 function Modal(props) {
   const useStyles = makeStyles((theme) => ({
@@ -30,7 +30,7 @@ function Modal(props) {
       maxWidth="md"
       classes={{ paper: classes.dialogWrapper }}
     >
-      <DialogTitle className={style.title}>
+      <DialogTitle>
         <div style={{ display: "flex" }}>
           <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
             {title}
