@@ -6,6 +6,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 
 function Modal(props) {
@@ -43,5 +44,13 @@ function Modal(props) {
     </Dialog>
   );
 }
+
+// PropTypes
+Modal.propTypes = {
+  title: PropTypes.func,
+  setOpenModal: PropTypes.func,
+  openModal: PropTypes.func,
+  children: PropTypes.func,
+};
 
 export default Modal;
