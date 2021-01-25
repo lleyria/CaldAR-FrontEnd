@@ -21,9 +21,19 @@ export const emailValidator = (value) =>
     : "Invalid Email";
 
 export const boilerTypeValidator = (value) =>
-    /([A-D '-]){1,8}$/.test(value)
+  /([A-D '-]){1,8}$/.test(value)
     ? undefined
     : "A boiler type included is not available. Currently boilers types available are: A, B, C and D.";
+
+//Boilers validators
+export const lotValidator = (value) =>
+  /[0-9]{3}[-][A-D]{1}[0-9]{2}/.test(value)
+    ? undefined
+    : "Invalid lot name. It must starts with three numbers follow by a '-' simbol, then a letter (A,B,C or D) and then " +
+      "two more numbers";
+
+export const dateValidator = (value) =>
+/^\d{4}-\d{2}-\d{2}$/.test(value) ? undefined : "Invalid date format";
 
 export const composeValidators = (...validators) => (value) =>
   validators.reduce((error, validator) => error || validator(value), undefined);
