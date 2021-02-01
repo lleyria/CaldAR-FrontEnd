@@ -4,6 +4,7 @@ import BoilersTable from "./BoilersTable";
 import BoilerForm from "./BoilerForm";
 import AddButton from "./AddButton";
 import { connect } from "react-redux";
+import { Modal } from "../SharedComponents/Modal/Modal";
 
 const Boilers = ({ formVisible }) => {
   return (

@@ -12,7 +12,7 @@ import {
   UPDATE_BOILERS_FULFILLED,
   UPDATE_BOILERS_FETCHING,
   UPDATE_BOILERS_REJECTED,
-} from "../types/boilersConstants";
+} from "../types/boilersTypes";
 
 const URL = "https://app-caldar.herokuapp.com/boilers";
 

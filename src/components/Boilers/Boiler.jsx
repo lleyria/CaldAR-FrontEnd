@@ -2,23 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Boiler.css";
 import { connect } from "react-redux";
-import { deleteBoiler, showForm } from "../../redux/actions/boilersActions";
+import { deleteBoiler } from "../../redux/actions/boilersActions";
 import { bindActionCreators } from "redux";
+import { showModal } from "../../redux/actions/modalActions";
+import { UPDATE_BOILER } from "../../redux/types/modalTypes";
 
-const Boiler = ({ boiler, deleteBoiler, showForm }) => {
+const Boiler = ({ boiler, deleteBoiler, showModal }) => {
   return (
     <tr className="boilerRow">
       <td>{boiler.lot}</td>
       <td>{boiler.companyName}</td>
       <td>{boiler.boilersTypeId}</td>
-      <td>{boiler.installationDate ? boiler.installationDate.split("T")[0] : ""}</td>
-      <td>{boiler.fabricationDate ? boiler.fabricationDate.split("T")[0] : ""}</td>
-      <td>{boiler.expirationDate ? boiler.expirationDate.split("T")[0] : ""}</td>
+      <td>
+        {boiler.installationDate ? boiler.installationDate.split("T")[0] : ""}
+      </td>
+      <td>
+        {boiler.fabricationDate ? boiler.fabricationDate.split("T")[0] : ""}
+      </td>
+      <td>
+        {boiler.expirationDate ? boiler.expirationDate.split("T")[0] : ""}
+      </td>
       <td className="icons">
         <i
           className="fas fa-pen"
           onClick={() => {
-            showForm(boiler._id);
+            showModal(UPDATE_BOILER, { id: boiler._id });
           }}
         />
         <i
@@ -36,21 +44,14 @@ const Boiler = ({ boiler, deleteBoiler, showForm }) => {
 Boiler.propTypes = {
   boiler: PropTypes.object.isRequired,
   deleteBoiler: PropTypes.func.isRequired,
-  showForm: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
 };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     delBoiler: (id) => dispatch(delBoiler(id)),
-//     showForm: (id) => dispatch(showForm(id)),
-//   };
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       deleteBoiler: deleteBoiler,
-      showForm: showForm,
+      showModal: showModal,
     },
     dispatch
   );

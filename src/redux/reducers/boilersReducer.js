@@ -12,7 +12,7 @@ import {
   UPDATE_BOILERS_FULFILLED,
   UPDATE_BOILERS_FETCHING,
   UPDATE_BOILERS_REJECTED,
-} from "../../redux/types/boilersConstants";
+} from "../../redux/types/boilersTypes";
 
 const initialState = {
   boilers: [],

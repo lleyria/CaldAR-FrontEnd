@@ -7,9 +7,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
+import BoilerForm from "../../Boilers/BoilerForm";
+import RemoveBoilerMessage from "../../Boilers/RemoveBoilerMessage";
 
-
-function Modal(props) {
+function Modal({ title, children, show, setOpenModal, meta, modalType }) {
   const useStyles = makeStyles((theme) => ({
     dialogWrapper: {
       position: "absolute",
@@ -21,12 +22,27 @@ function Modal(props) {
     },
   }));
 
-  const { title, children, openModal, setOpenModal } = props;
   const classes = useStyles();
+
+  let modalComponent;
+  switch (modalType) {
+    case modalTypes.ADD_BOILER:
+      modalComponent = <BoilerForm />;
+      break;
+    case modalTypes.UPDATE_BOILER:
+      modalComponent = <BoilerForm boilerId={meta.id} />;
+      break;
+    case modalTypes.DELETE_BOILER:
+      modalComponent = <RemoveBoilerMessage boilerId={meta.id} />;
+      break;
+    default:
+      modalComponent = null;
+      break;
+  }
 
   return (
     <Dialog
-      open={openModal}
+      open={show}
       modal={setOpenModal}
       maxWidth="md"
       classes={{ paper: classes.dialogWrapper }}
@@ -41,6 +57,7 @@ function Modal(props) {
       <DialogContent dividers>
         <div>{children}</div>
       </DialogContent>
+      {modalComponent}
     </Dialog>
   );
 }
@@ -49,8 +66,26 @@ function Modal(props) {
 Modal.propTypes = {
   title: PropTypes.func,
   setOpenModal: PropTypes.func,
-  openModal: PropTypes.func,
+  show: PropTypes.func,
   children: PropTypes.func,
 };
 
-export default Modal;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      closeModal: closeModal,
+    },
+    dispatch
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    show: state.modal.show,
+    modalType: state.modal.modalType,
+    meta: state.modal.meta,
+  };
+};
+
+// export default Modal;
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
