@@ -42,6 +42,12 @@
     padding: 8px;
     margin: 5px;
   }
+  .add-btn {
+    background-color: #fafafa;
+    color: #fc6225;
+    font-size: 35px;
+    text-align: right;
+}
   .submit-btn:hover{
     background-color: green;
   }

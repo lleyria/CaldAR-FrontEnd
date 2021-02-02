@@ -2,19 +2,36 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { delBuilding, updateBuilding  } from "../../redux/actions/buildingsActions";
 import { connect } from 'react-redux';
+import Modal from "../../modal/modal"
+import { Form, Field } from "react-final-form";
+import {
+  required,
+  fullNameValidator,
+  addressValidator,
+  phoneValidator,
+  boilerTypeValidator,
+  composeValidators 
+} from "../../final-form/validators"
 
 const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [buildingToEdit, setBuildingToEdit] = useState(building);
-
-  const handleOnClick = () => {
-    setIsEditing(false);
-  }
-  
-  const onSubmit = () =>{
+  const [openModal, setOpenModal] = useState(false);
+  const onSubmit = () => {
+    setOpenModal(false);
     updateBuilding(buildingToEdit);
     setIsEditing(false);
-  } 
+  };
+  const cancelClick = () => {
+    setIsEditing(false);
+    setBuildingToEdit(building);
+    setOpenModal(false);
+  };
+  const toggleEdit = () => {
+    setBuildingToEdit(building);
+    setIsEditing(!isEditing);
+    setOpenModal(true);
+  };
   const {
     _id,
     buildingName,
@@ -31,73 +48,223 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
   }
   return isEditing ? (
     <>
-      <input
-        readOnly
-        type="text"
-        name="id"
-        style={{ flex: "10", padding: "5px" }}
-        placeholder="id"
-        value={buildingToEdit.id}
-        onChange={onChange}
-      />
-      <input
-        type="text"
-        name="buildingName"
-        style={{ flex: "10", padding: "5px" }}
-        placeholder="Building Name"
-        value={buildingToEdit.buildingName}
-        onChange={onChange}
-      />
-      <input
-        type="text"
-        name="companyName"
-        style={{ flex: "10", padding: "5px" }}
-        placeholder="Company Name"
-        value={buildingToEdit.companyName}
-        onChange={onChange}
-      />
-      <input
-        type="text"
-        name="address"
-        style={{ flex: "10", padding: "5px" }}
-        placeholder="address"
-        value={buildingToEdit.address}
-        onChange={onChange}
-      />
-      <input
-        type="text"
-        name="managerName"
-        style={{ flex: "10", padding: "5px" }}
-        placeholder="Manager Name"
-        value={buildingToEdit.managerName}
-        onChange={onChange}
-      />
-      <input
-        type="text"
-        name="phone"
-        style={{ flex: "10", padding: "5px" }}
-        placeholder="phone"
-        value={buildingToEdit.phone}
-        onChange={onChange}
-      />
-      <input
-        type="text"
-        name="boilersId"
-        style={{ flex: "10", padding: "5px" }}
-        placeholder="boilersId"
-        value={buildingToEdit.boilersId}
-        onChange={onChange}
-      />
-      <input
-        type="text"
-        name="boilersTypes"
-        style={{ flex: "10", padding: "5px" }}
-        placeholder="Boilers Types"
-        value={buildingToEdit.boilersTypes}
-        onChange={onChange}
-      />
-      <button onClick={() => onSubmit()}  className="submit-btn" style={{ flex: "1" }}>submit</button>
-      <button onClick={() => handleOnClick()} className="del-btn" style={{ flex: "1" }}>X</button>
+      <Modal
+        title="Modify Menu"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      > 
+      <Form onSubmit={onSubmit} render= {({ handleSubmit, meta, values, submitting }) => (
+        <form onSubmit={handleSubmit}>
+          <div>
+              <Field
+                name="buildingName"
+                placeholder="Building Name"
+                validate={required}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Building Name</label>
+                    <input
+                      {...input}
+                      className="inputStyle"
+                      placeholder={placeholder}
+                      value={buildingToEdit.buildingName}
+                      onChange={(e) => {
+                          input.onChange(e);
+                          if (onChange) {
+                            onChange(e);
+                          }
+                        }}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className="errorMsg"> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="companyName"
+                placeholder="Company Name"
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Company Name</label>
+                    <input
+                      {...input}
+                      className="inputStyle"
+                      placeholder={placeholder}
+                      value={buildingToEdit.companyName}
+                      onChange={(e) => {
+                          input.onChange(e);
+                          if (onChange) {
+                            onChange(e);
+                          }
+                        }}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className="errorMsg"> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="address"
+                placeholder="Address"
+                validate={composeValidators(required, addressValidator)}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Address</label>
+                    <input
+                      {...input}
+                      className="inputStyle"
+                      placeholder={placeholder}
+                      value={buildingToEdit.address}
+                      onChange={(e) => {
+                          input.onChange(e);
+                          if (onChange) {
+                            onChange(e);
+                          }
+                        }}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className="errorMsg"> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="managerName"
+                placeholder="Manager Name"
+                validate={composeValidators(required, fullNameValidator)}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Manager Name</label>
+                    <input
+                      {...input}
+                      className="inputStyle"
+                      placeholder={placeholder}
+                      value={buildingToEdit.fullNameValidator}
+                      onChange={(e) => {
+                          input.onChange(e);
+                          if (onChange) {
+                            onChange(e);
+                          }
+                        }}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className="errorMsg"> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="phone"
+                placeholder="Phone"
+                validate={composeValidators(required, phoneValidator)}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Phone</label>
+                    <input
+                      {...input}
+                      className="inputStyle"
+                      placeholder={placeholder}
+                      value={buildingToEdit.phone}
+                      onChange={(e) => {
+                          input.onChange(e);
+                          if (onChange) {
+                            onChange(e);
+                          }
+                        }}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className="errorMsg"> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="boilersId"
+                placeholder="Boilers Id"
+                validate={required}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Boilers Id</label>
+                    <input
+                      {...input}
+                      className="inputStyle"
+                      placeholder={placeholder}
+                      value={buildingToEdit.boilersId}
+                      onChange={(e) => {
+                          input.onChange(e);
+                          if (onChange) {
+                            onChange(e);
+                          }
+                        }}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className="errorMsg"> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="boilerTypes"
+                placeholder="Boilers Types"
+                validate={composeValidators(required, boilerTypeValidator)}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Boilers Types</label>
+                    <input
+                      {...input}
+                      className="inputStyle"
+                      placeholder={placeholder}
+                      value={buildingToEdit.boilerTypes}
+                      onChange={(e) => {
+                          input.onChange(e);
+                          if (onChange) {
+                            onChange(e);
+                          }
+                        }}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className="errorMsg"> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div> 
+            <button
+                type="submit"
+                className="submit-btn"
+                onClick={onSubmit}
+              >
+                {" "}Confirm{" "}
+              </button>
+              <button className="del-btn" onClick={cancelClick}>
+                {" "}Cancel{" "}
+              </button>
+        </form>
+      )} />
+      
+    
+      </Modal> 
     </>
   ) : (
     <div className="box">
@@ -113,7 +280,7 @@ const BuildingItems = ({ building, delBuilding, updateBuilding }) => {
         <button onClick={() => delBuilding(_id)} className="del-btn">
           X
         </button>
-        <button onClick={() => setIsEditing(true)} className="modify-btn">
+        <button onClick={toggleEdit} className="modify-btn">
           M
         </button>
       </ul>
@@ -144,4 +311,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect (mapStateToProps, mapDispatchToProps)(BuildingItems);
-
