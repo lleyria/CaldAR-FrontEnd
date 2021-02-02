@@ -9,8 +9,16 @@ import {
 import PropTypes from "prop-types";
 import BoilerForm from "../../Boilers/BoilerForm";
 import RemoveBoilerMessage from "../../Boilers/RemoveBoilerMessage";
+import {
+  UPDATE_BOILER,
+  DELETE_BOILER,
+  ADD_BOILER,
+} from "../../../redux/types/modalTypes";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { closeModal } from "../../../redux/actions/modalActions";
 
-function Modal({ title, children, show, setOpenModal, meta, modalType }) {
+function Modal({ title, children, show, meta, modalType }) {
   const useStyles = makeStyles((theme) => ({
     dialogWrapper: {
       position: "absolute",
@@ -26,13 +34,13 @@ function Modal({ title, children, show, setOpenModal, meta, modalType }) {
 
   let modalComponent;
   switch (modalType) {
-    case modalTypes.ADD_BOILER:
+    case ADD_BOILER:
       modalComponent = <BoilerForm />;
       break;
-    case modalTypes.UPDATE_BOILER:
-      modalComponent = <BoilerForm boilerId={meta.id} />;
+    case UPDATE_BOILER:
+      modalComponent = <BoilerForm initialState={meta} />;
       break;
-    case modalTypes.DELETE_BOILER:
+    case DELETE_BOILER:
       modalComponent = <RemoveBoilerMessage boilerId={meta.id} />;
       break;
     default:
@@ -43,7 +51,6 @@ function Modal({ title, children, show, setOpenModal, meta, modalType }) {
   return (
     <Dialog
       open={show}
-      modal={setOpenModal}
       maxWidth="md"
       classes={{ paper: classes.dialogWrapper }}
     >
@@ -64,10 +71,14 @@ function Modal({ title, children, show, setOpenModal, meta, modalType }) {
 
 // PropTypes
 Modal.propTypes = {
-  title: PropTypes.func,
-  setOpenModal: PropTypes.func,
-  show: PropTypes.func,
-  children: PropTypes.func,
+  title: PropTypes.string,
+  show: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+  meta: PropTypes.object,
+  modalType: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -81,9 +92,9 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    show: state.modal.show,
-    modalType: state.modal.modalType,
-    meta: state.modal.meta,
+    show: state.modalReducer.show,
+    modalType: state.modalReducer.modalType,
+    meta: state.modalReducer.meta,
   };
 };
 

@@ -15,7 +15,7 @@ import {
   lotValidator,
 } from "../../final-form/validators";
 
-const BoilerForm = ({ addBoiler, updateBoiler, initialState }) => {
+const BoilerForm = ({ addBoiler, updateBoiler, initialState, closeModal }) => {
   const emptyBoiler = {
     lot: "",
     companyName: "",
@@ -153,6 +153,7 @@ BoilerForm.propTypes = {
   initialState: PropTypes.object,
   addBoiler: PropTypes.func.isRequired,
   updateBoiler: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {

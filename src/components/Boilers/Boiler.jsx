@@ -2,12 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Boiler.css";
 import { connect } from "react-redux";
-import { deleteBoiler } from "../../redux/actions/boilersActions";
 import { bindActionCreators } from "redux";
 import { showModal } from "../../redux/actions/modalActions";
-import { UPDATE_BOILER } from "../../redux/types/modalTypes";
+import { UPDATE_BOILER, DELETE_BOILER } from "../../redux/types/modalTypes";
 
-const Boiler = ({ boiler, deleteBoiler, showModal }) => {
+const Boiler = ({ boiler, showModal }) => {
   return (
     <tr className="boilerRow">
       <td>{boiler.lot}</td>
@@ -32,7 +31,7 @@ const Boiler = ({ boiler, deleteBoiler, showModal }) => {
         <i
           className="fas fa-trash"
           onClick={() => {
-            deleteBoiler(boiler._id);
+            showModal(DELETE_BOILER, { id: boiler._id });
           }}
         />
       </td>
@@ -43,14 +42,12 @@ const Boiler = ({ boiler, deleteBoiler, showModal }) => {
 // PropTypes
 Boiler.propTypes = {
   boiler: PropTypes.object.isRequired,
-  deleteBoiler: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      deleteBoiler: deleteBoiler,
       showModal: showModal,
     },
     dispatch

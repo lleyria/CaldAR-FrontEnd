@@ -1,18 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./AddButton.css";
+import { showModal } from "../../redux/actions/modalActions";
+import { ADD_BOILER } from "../../redux/types/modalTypes";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { showForm } from "../../redux/actions/boilersActions";
 
-const AddButton = ({ showForm }) => {
+const AddButton = ({ showModal }) => {
   return (
-    <i className="fas fa-plus-circle add-button" onClick={() => showForm()} />
+    <i
+      className="fas fa-plus-circle add-button"
+      onClick={() => showModal(ADD_BOILER)}
+    />
   );
 };
 
 // PropTypes
 AddButton.propTypes = {
-  showForm: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
 };
 
-export default connect(null, { showForm })(AddButton);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      showModal: showModal,
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(AddButton);
