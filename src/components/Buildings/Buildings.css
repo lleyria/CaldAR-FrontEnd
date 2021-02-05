@@ -21,7 +21,7 @@
     background: #ff0000;
     padding: 8px;
     margin: 5px;
-    width: 2%;
+    width: 3%;
     height: 10%;
   }
   .del-btn:hover{
@@ -31,7 +31,7 @@
     background: #00ff00;
     padding: 8px;
     margin: 5px;
-    width: 2%;
+    width: 3%;
     height: 10%;
   }
   .modify-btn:hover{
@@ -43,10 +43,11 @@
     margin: 5px;
   }
   .add-btn {
-    background-color: #fafafa;
-    color: #fc6225;
-    font-size: 35px;
-    text-align: right;
+    background: #00ff00;
+    padding: 8px;
+    margin: 5px;
+    width: 3%;
+    height: 10%;
 }
   .submit-btn:hover{
     background-color: green;
