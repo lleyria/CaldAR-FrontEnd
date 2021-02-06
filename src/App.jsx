@@ -2,24 +2,25 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Routes from './routes';
 import Modal from "./modal/modal";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Form, Field } from "react-final-form";
 import {
   required
-} from "./final-form/validators"
+} from "./final-form/validators";
+import { loginWithFirebase } from './redux/actions/authActions';
+import PropTypes from "prop-types"
 
-const App = () => {
+const App = ({loginWithFirebase}) => {
     const [openModal, setOpenModal] = useState(false);
     const [isLogged, toggleLogin] = useState(false);
-  
-    const toggleLog = () => {
-      toggleLogin(!isLogged);
-      setOpenModal(false);
-    };
-  
-    const onSubmit = () => {
-      toggleLog();
-    };
-  
+    
+    const onSubmitLogin = (values) => {
+            toggleLogin(!isLogged);
+            setOpenModal(false);
+            loginWithFirebase(values);
+          };
+
     return isLogged ? (
         
             <Router>
@@ -38,7 +39,7 @@ const App = () => {
         openModal={openModal}
         setOpenModal={setOpenModal}
         >
-        <Form onSubmit={onSubmit} render= {({ handleSubmit, meta, values, submitting }) => (
+        <Form onSubmit={onSubmitLogin} render= {({ handleSubmit, meta, values, submitting }) => (
         <form onSubmit={handleSubmit}>
           <div>
               <Field
@@ -86,7 +87,6 @@ const App = () => {
             <button
                 type="submit"
                 className="submit-btn"
-                onClick={toggleLog}
               >
                 {" "}Confirm{" "}
               </button>
@@ -99,4 +99,14 @@ const App = () => {
         </>
     )
 }
-export default App;
+
+// PropTypes
+App.propTypes = {
+  loginWithFirebase: PropTypes.func.isRequired
+};
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        loginWithFirebase,
+    }, dispatch);
+};
+export default connect(null, mapDispatchToProps)(App);

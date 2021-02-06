@@ -15,6 +15,12 @@ import {
 
 const URL = "https://app-caldar.herokuapp.com/buildings"
 
+const getHeaders = () => ({
+  "Accept": "application/json",
+  "Content-type": "application/json",
+  token: localStorage.getItem('token')
+})
+
 
 export const getBuildingsFetching = () => {
     return {
@@ -64,10 +70,7 @@ const addBuildingFetching = () => ({
     console.log('body', body);
     return fetch(`${URL}/`, {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json"
-      },
+      headers: getHeaders(),
       body: body,
     })
       .then((data) => data.json())
@@ -124,10 +127,7 @@ const addBuildingFetching = () => ({
     return fetch(`${URL}/?id=${build._id}`, {
       method: "PUT",
       body: JSON.stringify(build),
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json"
-      }
+      headers: getHeaders(),
     })
       .then(() => {
           dispatch(updateBuildingFullfilled(build));
