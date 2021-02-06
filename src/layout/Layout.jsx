@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const Layout = ({children}) => {
+    const onClick = () => {
+        
+    }
     return(
         <div>
             <div>
@@ -53,7 +56,7 @@ const Layout = ({children}) => {
                 </SideBar>
             </div>
             <div>
-                Top Bar
+                <button onClick={onClick}></button>
             </div>
             <MainContainer container={children}></MainContainer>
         </div>

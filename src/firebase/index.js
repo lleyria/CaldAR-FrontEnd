@@ -3,7 +3,6 @@ import 'firebase/auth';
 import { store } from '../index';
 
 const firebaseConfig = {
-
   apiKey: process.env.REACT_APP_API_KEY || '',
   authDomain: process.env.REACT_APP_AUTH_DOMAIN || '',
   projectId: process.env.REACT_APP_PROJECT_ID || '',
@@ -14,8 +13,9 @@ const firebaseConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
+
 const setToken = async (user) => {
-  const auth = store.getState().auth;
+  const auth = store.getState().authReducer;
   if (auth.authenticated) {
     const token = await user.getIdToken();
     localStorage.setItem('token', token);

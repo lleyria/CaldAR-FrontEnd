@@ -28,7 +28,6 @@ const App = ({loginWithFirebase}) => {
                     <Routes />
                 </Switch>
             </Router>
-        
     ) : (
         <>
         <button onClick={() => setOpenModal(true)}>

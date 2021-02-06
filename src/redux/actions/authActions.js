@@ -33,11 +33,13 @@ import {
     dispatch(loginFetching());
     return Firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(async (response) => {
+        console.log("success:", response);
         const token = await response.user.getIdToken();
         localStorage.setItem('token', token)
         return dispatch(loginFulfilled());
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log("error,", e);
         return dispatch(loginRejected());
       })
   };
