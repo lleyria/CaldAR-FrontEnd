@@ -3,10 +3,14 @@ import SideBar from './Sidebar';
 import MainContainer from '../components/MainContainer';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { signoutAction } from "../redux/actions/authActions";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
 
-const Layout = ({children}) => {
-    const onClick = () => {
-        
+const Layout = ({children, signoutAction}) => {
+
+    const handleClick = () => {
+        signoutAction();
     }
     return(
         <div>
@@ -56,15 +60,21 @@ const Layout = ({children}) => {
                 </SideBar>
             </div>
             <div>
-                <button onClick={onClick}></button>
-            </div>
+                <button onClick={handleClick}>Logout</button>
+            </div> 
             <MainContainer container={children}></MainContainer>
         </div>
     )
 }
 
 Layout.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    signoutAction: PropTypes.func,
 };
 
-export default Layout;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        signoutAction,
+    }, dispatch);
+};
+export default connect(null, mapDispatchToProps)(Layout);
